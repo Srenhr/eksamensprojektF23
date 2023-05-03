@@ -5,8 +5,6 @@ import lombok.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "note_type",
-    discriminatorType = DiscriminatorType.INTEGER)
 @Table(name = "notes")
 @Getter
 @Setter
