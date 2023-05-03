@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@DiscriminatorValue("1")
-/*
 @Table(name = "appointment_notes")
-*/
 @Getter
 @Setter
 @AllArgsConstructor

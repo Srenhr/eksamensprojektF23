@@ -14,8 +14,6 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "user_type",
-    discriminatorType = DiscriminatorType.INTEGER)
 @Table(name = "users")
 @Getter
 @Setter
@@ -29,9 +27,7 @@ public class User implements UserDetails {
   @Column(name = "user_id")
   private Long userId;
 
-/*
   @Column(unique = true)
-*/
   @NotNull
   private String username; /*email*/
 
