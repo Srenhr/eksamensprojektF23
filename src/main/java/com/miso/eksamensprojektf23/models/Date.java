@@ -1,4 +1,4 @@
-package com.miso.eksamensprojektf23.entities;
+package com.miso.eksamensprojektf23.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

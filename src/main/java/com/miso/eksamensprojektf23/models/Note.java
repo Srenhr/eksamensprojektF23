@@ -1,4 +1,4 @@
-package com.miso.eksamensprojektf23.entities;
+package com.miso.eksamensprojektf23.models;
 
 import jakarta.persistence.*;
 import lombok.*;
