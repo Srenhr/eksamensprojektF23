@@ -1,7 +1,7 @@
 package com.miso.eksamensprojektf23.auth;
 
 
-import com.srenhrkea.caravan.entities.Role;
+import com.miso.eksamensprojektf23.models.Role;
 import lombok.*;
 
 import java.util.Set;
@@ -15,7 +15,7 @@ public class RegisterRequest {
   private Long userId;
   private String username;
   private String password;
-  private String firstName;
-  private String lastName;
+/*  private String firstName;
+  private String lastName;*/
   private Set<Role> roles;
 }
