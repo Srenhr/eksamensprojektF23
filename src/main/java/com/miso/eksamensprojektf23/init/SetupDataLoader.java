@@ -4,7 +4,6 @@ package com.miso.eksamensprojektf23.init;
 import com.miso.eksamensprojektf23.models.Employee;
 import com.miso.eksamensprojektf23.models.Privilege;
 import com.miso.eksamensprojektf23.models.Role;
-import com.miso.eksamensprojektf23.models.User;
 import com.miso.eksamensprojektf23.repositories.PrivilegeRepository;
 import com.miso.eksamensprojektf23.repositories.RoleRepository;
 import com.miso.eksamensprojektf23.repositories.UserRepository;
@@ -50,9 +49,6 @@ public class SetupDataLoader implements
     user.setUsername("admin@test.com");
     user.setPhoneNumber("+45123456789");
     user.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
-/*
-    user.setEnabled(true);
-*/
     userRepository.save(user);
 
     user = new Employee();
@@ -62,9 +58,6 @@ public class SetupDataLoader implements
     user.setUsername("employee@test.com");
     user.setPhoneNumber("+45987654321");
     user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
-/*
-    user.setEnabled(true);
-*/
     userRepository.save(user);
 
     alreadySetup = true;
