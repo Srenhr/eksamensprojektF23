@@ -25,9 +25,9 @@ public class Employee extends User{
   private String firstName;
   @NotNull
   private String lastName;
-  @Column(unique = true)
+ /* @Column(unique = true)
   @NotNull
-  private String email; /*Behøves nok ikke når der kommer username fra User*/
+  private String email;*/ /*Behøves nok ikke når der kommer username fra User*/
   @Column(unique = true)
   @NotNull
   private String phoneNumber;

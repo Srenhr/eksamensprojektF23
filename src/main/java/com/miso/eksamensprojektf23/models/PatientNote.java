@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "appointment_notes")
+@Table(name = "patient_notes")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,9 +17,7 @@ public class PatientNote extends Note {
   @Column(name = "patient_note_id")
   private Long patientNoteId;*/
 
-  private String patientextra1;
-
-  @OneToOne
-  @JoinColumn(name = "appointment_id")
-  private Appointment appointment;
+  @ManyToOne
+  @JoinColumn(name = "patient_id")
+  private Patient patient;
 }

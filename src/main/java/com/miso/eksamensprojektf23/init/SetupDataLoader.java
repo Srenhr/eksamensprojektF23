@@ -1,6 +1,7 @@
 package com.miso.eksamensprojektf23.init;
 
 
+import com.miso.eksamensprojektf23.models.Employee;
 import com.miso.eksamensprojektf23.models.Privilege;
 import com.miso.eksamensprojektf23.models.Role;
 import com.miso.eksamensprojektf23.models.User;
@@ -42,22 +43,24 @@ public class SetupDataLoader implements
     Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
     Role roleUser = createRoleIfNotFound("ROLE_USER", new HashSet<>(Collections.singletonList(readPrivilege)));
 
-    User user = new User();
-/*    user.setFirstName("test");
-    user.setLastName("test");*/
+    Employee user = new Employee();
+    user.setFirstName("test");
+    user.setLastName("test");
     user.setPassword(passwordEncoder.encode("test"));
     user.setUsername("admin@test.com");
+    user.setPhoneNumber("+45123456789");
     user.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
 /*
     user.setEnabled(true);
 */
     userRepository.save(user);
 
-    user = new User();
-/*    user.setFirstName("test");
-    user.setLastName("test");*/
+    user = new Employee();
+    user.setFirstName("test");
+    user.setLastName("test");
     user.setPassword(passwordEncoder.encode("test"));
-    user.setUsername("user@test.com");
+    user.setUsername("employee@test.com");
+    user.setPhoneNumber("+45987654321");
     user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
 /*
     user.setEnabled(true);

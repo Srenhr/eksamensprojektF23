@@ -30,9 +30,4 @@ public class Appointment {
   @JsonIgnore
   @ToString.Exclude
   private AppointmentNote appointmentNote;
-
-  @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
-  @JsonIgnore
-  @ToString.Exclude
-  private PatientNote patientNote;
 }

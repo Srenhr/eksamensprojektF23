@@ -45,4 +45,9 @@ public class Patient {
   @JsonIgnore
   @ToString.Exclude
   private Set<Appointment> appointments = new HashSet<>();
+
+  @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @ToString.Exclude
+  private Set<PatientNote> patientNotes = new HashSet<>();
 }
