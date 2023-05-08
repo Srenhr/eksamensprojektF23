@@ -47,4 +47,9 @@ public class DefaultController {
   public String error403() {
     return "error/403";
   }
+
+  @GetMapping("/test")
+  public String test() {
+    return "test";
+  }
 }
