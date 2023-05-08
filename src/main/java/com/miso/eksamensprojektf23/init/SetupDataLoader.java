@@ -25,7 +25,7 @@ public class SetupDataLoader implements
   private final RoleRepository roleRepository;
   private final PrivilegeRepository privilegeRepository;
   private final PasswordEncoder passwordEncoder;
-  private boolean alreadySetup = false;
+  private boolean alreadySetup = true;
 
   @Override
   @Transactional

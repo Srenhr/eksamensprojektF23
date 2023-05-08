@@ -38,7 +38,7 @@ public class Employee extends User {
   @ToString.Exclude
   private Calendar calendar;
 
-  @Builder
+  @Builder(builderMethodName = "employeeBuilder")
   public Employee(Long userId, @NotNull String username, @NotNull String password, Set<Role> roles, String firstName, String lastName, String phoneNumber) {
     super(userId, username, password, roles);
     this.firstName = firstName;

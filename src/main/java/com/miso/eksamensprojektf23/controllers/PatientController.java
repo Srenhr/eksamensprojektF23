@@ -31,7 +31,7 @@ public class PatientController {
     }
 
     @PutMapping("/patient/{id}")
-    public ResponseEntity<Patient> updatePatient(@PathVariable int id, @RequestBody Patient patient) {
+    public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
         Optional<Patient> optPatient = patientRepository.findById(id);
         if (optPatient.isPresent()) {
             patientRepository.save(patient);

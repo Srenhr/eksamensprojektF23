@@ -19,7 +19,7 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
 
   public String register(RegisterRequest request) {
-    var user = Employee.builder()
+    var user = Employee.employeeBuilder()
         .username(request.getUsername())
         .password(passwordEncoder.encode(request.getPassword()))
         .firstName(request.getFirstName())
