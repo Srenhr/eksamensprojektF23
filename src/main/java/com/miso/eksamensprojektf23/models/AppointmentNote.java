@@ -1,6 +1,9 @@
 package com.miso.eksamensprojektf23.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -12,12 +15,6 @@ import lombok.*;
 @Builder
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class AppointmentNote extends Note {
-/*  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "appointment_note_id")
-  private Long appointmentNoteId;*/
-
-  private String patientextra2;
 
   @OneToOne
   @JoinColumn(name = "appointment_id")

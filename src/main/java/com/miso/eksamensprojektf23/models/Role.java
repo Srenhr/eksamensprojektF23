@@ -15,7 +15,6 @@ import java.util.Set;
 @ToString
 @Table(name = "roles")
 public class Role {
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "role_id")
@@ -23,6 +22,7 @@ public class Role {
   @Column(unique = true)
   @NotNull
   private String name;
+
   @ManyToMany(mappedBy = "roles")
   @ToString.Exclude
   private Set<User> users;

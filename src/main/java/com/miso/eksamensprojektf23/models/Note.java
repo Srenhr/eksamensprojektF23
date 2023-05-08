@@ -16,8 +16,6 @@ public abstract class Note {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "note_id")
   private Long noteId;
-
   private String title;
-
   private String noteText;
 }

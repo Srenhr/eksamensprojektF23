@@ -26,14 +26,11 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
-
   @Column(unique = true)
   @NotNull
   private String username; /*email*/
-
   @NotNull
   private String password;
-
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "users_roles",

@@ -13,21 +13,12 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder(builderMethodName = "employeeBuilder")
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
-public class Employee extends User{
-
-/*  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "employee_id")
-  private Long employeeId;*/
+public class Employee extends User {
   @NotNull
   private String firstName;
   @NotNull
   private String lastName;
- /* @Column(unique = true)
-  @NotNull
-  private String email;*/ /*Behøves nok ikke når der kommer username fra User*/
   @Column(unique = true)
   @NotNull
   private String phoneNumber;
@@ -46,4 +37,12 @@ public class Employee extends User{
   @JsonIgnore
   @ToString.Exclude
   private Calendar calendar;
+
+  @Builder
+  public Employee(Long userId, @NotNull String username, @NotNull String password, Set<Role> roles, String firstName, String lastName, String phoneNumber) {
+    super(userId, username, password, roles);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.phoneNumber = phoneNumber;
+  }
 }

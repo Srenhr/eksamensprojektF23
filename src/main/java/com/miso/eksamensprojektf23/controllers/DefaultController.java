@@ -38,11 +38,6 @@ public class DefaultController {
     return "login";
   }
 
-  @GetMapping("/signin")
-  public String signin() {
-    return "signin";
-  }
-
   @GetMapping("/failure")
   public String error401() {
     return "error/401";

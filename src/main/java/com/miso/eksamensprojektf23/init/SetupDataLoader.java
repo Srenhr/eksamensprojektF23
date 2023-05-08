@@ -36,11 +36,16 @@ public class SetupDataLoader implements
         = createPrivilegeIfNotFound("READ_PRIVILEGE");
     Privilege writePrivilege
         = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
+    Privilege updatePrivilege
+        = createPrivilegeIfNotFound("UPDATE_PRIVILEGE");
+    Privilege deletePrivilege
+        = createPrivilegeIfNotFound("DELETE_PRIVILEGE");
 
     Set<Privilege> adminPrivileges = new HashSet<>(Arrays.asList(
-        readPrivilege, writePrivilege));
+        readPrivilege, writePrivilege, updatePrivilege, deletePrivilege));
+    Set<Privilege> userPrivileges = new HashSet<>(Arrays.asList(readPrivilege, writePrivilege, updatePrivilege));
     Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-    Role roleUser = createRoleIfNotFound("ROLE_USER", new HashSet<>(Collections.singletonList(readPrivilege)));
+    Role roleUser = createRoleIfNotFound("ROLE_USER", userPrivileges);
 
     Employee user = new Employee();
     user.setFirstName("test");

@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-
   private final AuthenticationProvider authenticationProvider;
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         .csrf()
         .disable()
         .authorizeHttpRequests((authz) -> authz
-            .requestMatchers("/resources/**", "/static/**","/", "/home", "/about", "/error/**","/**")
+            .requestMatchers("/resources/**", "/static/**", "/", "/home", "/about", "/error/**", "/**", "/public/**")
             .permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/user/**").hasRole("USER")
@@ -46,35 +46,4 @@ public class SecurityConfiguration {
 
     return http.build();
   }
-
-  // create two users, admin and user, both with the password: 123
-/*  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    System.out.println("Users er oprettet.");
-
-    auth.inMemoryAuthentication()
-        .withUser("USER")
-        .password("$2a$12$Imos8GG8/L4CoYa/YsvgaOisFFnSh7OsnP0LyCb.AgOCjJGEEtU3S")
-        .roles("USER")
-        .and()
-        .withUser("ADMIN")
-        .password("$2a$12$Imos8GG8/L4CoYa/YsvgaOisFFnSh7OsnP0LyCb.AgOCjJGEEtU3S")
-        .roles("ADMIN", "USER");
-  }*/
-
-/*  @Bean
-  public AuthenticationFailureHandler authenticationFailureHandler() {
-    return new CustomAuthenticationFailureHandler();
-  }*/
-
-/*  @Bean
-  public AuthenticationSuccessHandler authenticationSuccessHandler() {
-    return new CustomAuthenticationSuccessHandler();
-  }*/
-
-/*  @Bean
-  public AccessDeniedHandler accessDeniedHandler() {
-    return new CustomAccessDeniedHandler();
-  }*/
-
 }

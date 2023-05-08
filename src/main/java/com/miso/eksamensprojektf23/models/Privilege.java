@@ -15,7 +15,6 @@ import java.util.Set;
 @ToString
 @Table(name = "privileges")
 public class Privilege {
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "privilege_id")
