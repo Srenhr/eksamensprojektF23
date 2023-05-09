@@ -4,3 +4,7 @@ body {
     background-image: radial-gradient(#444cf7 0.65px, #c1fff2 0.65px);
     background-size: 13px 13px;
 }
+
+main {
+    background-color: white;
+}

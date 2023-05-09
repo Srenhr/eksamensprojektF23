@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spring Boot Thymeleaf + Spring Security</title>
-
+    <title>Home</title>
+    <div th:replace="~{fragments/tdm :: tdm-header}"></div>
     <div th:replace="~{fragments/header :: header-css}"></div>
+
 
 </head>
 <body>
@@ -16,9 +17,17 @@
 </header>
 
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+<div th:replace="~{fragments/tdm :: tdm-body}"></div>
 
-<main>
-    <div class="container">
+
+<div class="container-fluid">
+
+
+    <main class="mx-auto" style="width: 90%;">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Home</h1>
+        </div>
+
 
         <div class="starter-template">
             <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
@@ -27,9 +36,8 @@
             <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
         </div>
 
-    </div>
-
-</main>
+    </main>
+</div>
 <footer>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
