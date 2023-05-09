@@ -17,11 +17,11 @@ function fillRolesDropDown(role) {
     ddRoles.appendChild(el)
 }
 
-roleList = []
+let roleList = []
 async function fetchRegioner() {
     roleList = await fetchAny(urlRoles);
     console.log(roleList)
     roleList.forEach(fillRolesDropDown)
 }
 
-ddRoles.addEventListener('DOMContentLoaded', fetchRegioner,)
+ddRoles.addEventListener('DOMContentLoaded', fetchRegioner);

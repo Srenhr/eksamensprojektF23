@@ -1,5 +1,6 @@
 package com.miso.eksamensprojektf23.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -24,6 +25,7 @@ public class Role {
   private String name;
 
   @ManyToMany(mappedBy = "roles")
+  @JsonIgnore
   @ToString.Exclude
   private Set<User> users;
 
@@ -35,5 +37,6 @@ public class Role {
       inverseJoinColumns = @JoinColumn(
           name = "privilege_id", referencedColumnName = "privilege_id"))
   @ToString.Exclude
+  @JsonIgnore
   private Set<Privilege> privileges;
 }
