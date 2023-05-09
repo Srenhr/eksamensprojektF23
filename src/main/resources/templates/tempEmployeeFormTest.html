@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-  <form action="/createEmployee" method="post" id="formEmployee">
+  <form action="http://localhost:8080/createEmployee" method="post" id="formEmployee">
     <label for="inpUsername">Username</label>
     <input type="text" name="username" id="inpUsername">
     <br>
@@ -29,9 +29,17 @@
     <br>
     <!-- Not sure if next part should be null or used but enter it for now -->
     <label for="inpReasonForRefferal"></label>
+    <br>
+    <label for="ddRoles">Roles</label>
+    <select id="ddRoles"></select>
+    <br>
+    <button type="submit">Create Employee</button>
 
 
 
   </form>
+
+  <script src="../static/js/employeeForm.js"></script>
+  <script src="../static/js/rolesFetch.js"></script>
 </body>
 </html>
