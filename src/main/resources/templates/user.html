@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-    <div th:replace="~{fragments/header :: header-css}"></div>
-  <title></title>
+    <meta charset="UTF-8">
+    <div th:replace="~{fragments/header :: head-files}"></div>
+    <title>User</title>
 </head>
 <body>
 
@@ -11,13 +11,13 @@
 
 <div class="container">
 
-  <div class="starter-template">
-    <h1>User page (Spring Security protected)</h1>
+    <div class="starter-template">
+        <h1>User page (Spring Security protected)</h1>
 
-  </div>
+    </div>
 
 </div>
-<!-- /.container -->
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
