@@ -12,20 +12,21 @@
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 <div th:replace="~{fragments/tdm :: tdm}"></div>
 
-    <main class="container-fluid mx-auto" style="width: 90%;">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Home</h1>
-        </div>
+<!-- Main -->
+<main class="container-fluid mx-auto" style="width: 90%;">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Home</h1>
+    </div>
 
 
-        <div class="starter-template">
-            <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
-            <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
-            <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
-            <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
-        </div>
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf + Spring Security</h1>
+        <h2>1. Visit <a th:href="@{/admin}">Admin page (Spring Security protected, Need Admin Role)</a></h2>
+        <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
+        <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+    </div>
 
-    </main>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 
