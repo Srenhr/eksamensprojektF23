@@ -1,29 +1,18 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light" class="h-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <div th:replace="~{fragments/tdm :: tdm-header}"></div>
-    <div th:replace="~{fragments/header :: header-css}"></div>
-
+    <div th:replace="~{fragments/header :: head-files}"></div>
 
 </head>
-<body>
-<header>
+<body class="d-flex flex-column h-100">
 
-    <div th:replace="~{fragments/header :: header}"></div>
-
-</header>
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-<div th:replace="~{fragments/tdm :: tdm-body}"></div>
+<div th:replace="~{fragments/tdm :: tdm}"></div>
 
-
-<div class="container-fluid">
-
-
-    <main class="mx-auto" style="width: 90%;">
+    <main class="container-fluid mx-auto" style="width: 90%;">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Home</h1>
         </div>
@@ -37,12 +26,9 @@
         </div>
 
     </main>
-</div>
-<footer>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
-</footer>
 
 </body>
 </html>
