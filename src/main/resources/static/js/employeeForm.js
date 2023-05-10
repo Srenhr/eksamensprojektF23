@@ -38,11 +38,20 @@ async function handleFormSubmit(event) {
 }
 
 async function postFormData(url, formData) {
+    console.log("postFormData");
     const plainFormData = Object.fromEntries(formData.entries())
-    //const ix = ddRegioner.selectedIndex;
-    //const linje = ddRegioner[ix]
-    //plainFormData.region = linje.region
+    console.log("First plainFormData:")
     console.log(plainFormData)
+    // TODO commenting this might fix potential issues with postFormData
+    const ix = ddRoles.selectedIndex;
+    console.log("ix: " + ix)
+    const linje = ddRoles[ix]
+    console.log("linje: " + linje)
+    plainFormData.roles = linje.role // Test for endpoint receiving a roles list instead of just a role
+    console.log("Formdata.roles V ")
+    console.log(plainFormData.roles)
+    console.log("Second plainformdata:")
+    console.log(plainFormData);
     const formDataJsonString = JSON.stringify(plainFormData)
     const fetchOptions = {
         method: "POST",
