@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         .csrf()
         .disable()
         .authorizeHttpRequests((authz) -> authz
-            .requestMatchers("/js/**", "/css/**", "/", "/home", "/about", "/error/**", /*"/**",*/ "/public/**")
+            .requestMatchers("/favicon.ico","/js/**", "/css/**","/image/**","/scss/**", "/", "/home", "/about", "/error/**"/*, "/**"*/, "/public/**")
             .permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/user/**").hasRole("USER")

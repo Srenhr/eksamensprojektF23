@@ -1,23 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
-    <div th:replace="~{fragments/tdm :: tdm-header}"></div>
-    <div th:replace="~{fragments/header :: header-css}"></div>
-
+    <div th:replace="~{fragments/header :: head-files}"></div>
 
 </head>
 <body>
-<header>
 
-    <div th:replace="~{fragments/header :: header}"></div>
-
-</header>
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-<div th:replace="~{fragments/tdm :: tdm-body}"></div>
+<div th:replace="~{fragments/tdm :: tdm}"></div>
 
 
 <div class="container-fluid">
@@ -175,11 +168,8 @@
         </div>
     </main>
 </div>
-<footer>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
-
-</footer>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-body {
+/*body {
     background-color: #c1fff2;
     opacity: 0.8;
     background-image: radial-gradient(#444cf7 0.65px, #c1fff2 0.65px);
@@ -7,4 +7,9 @@ body {
 
 main {
     background-color: white;
+}*/
+
+.feather {
+    width: 16px;
+    height: 16px;
 }
