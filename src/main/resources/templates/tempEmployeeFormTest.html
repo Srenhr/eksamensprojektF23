@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-  <form action="http://localhost:8080/createEmployee" method="post" id="formEmployee">
+<form id="formEmployee">
     <label for="inpUsername">Username</label>
     <input type="text" name="username" id="inpUsername">
     <br>
@@ -18,28 +18,27 @@
     <label for="inpLastName">Last name</label>
     <input type="text" name="lastName" id="inpLastName">
     <br>
-    <label for="inpEmail">Email</label>
-    <input type="email" name="email" id="inpEmail">
-    <br>
+    <!--    <label for="inpEmail">Email</label>
+        <input type="email" name="email" id="inpEmail">
+        <br>-->
     <label for="inpPhonenumber">Phonenumber</label>
     <input type="text" name="phoneNumber" id="inpPhonenumber">
     <br>
-    <label for="inpBirthdate">Birthdate</label>
-    <input type="date" name="birthdate" id="inpBirthdate">
-    <br>
+    <!--    <label for="inpBirthdate">Birthdate</label>
+        <input type="date" name="birthdate" id="inpBirthdate">
+        <br>-->
     <!-- Not sure if next part should be null or used but enter it for now -->
-    <label for="inpReasonForRefferal"></label>
-    <br>
+    <!--    <label for="inpReasonForRefferal"></label>
+        <br>-->
     <label for="ddRoles">Roles</label>
     <select id="ddRoles"></select>
     <br>
     <button type="submit">Create Employee</button>
+</form>
 
-
-
-  </form>
-
+<!--
   <script src="../static/js/employeeForm.js"></script>
-  <script src="../static/js/rolesFetch.js"></script>
+-->
+<script th:src="@{/js/rolesFetch.js}"></script>
 </body>
 </html>

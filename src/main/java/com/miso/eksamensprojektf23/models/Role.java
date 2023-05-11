@@ -37,6 +37,5 @@ public class Role {
       inverseJoinColumns = @JoinColumn(
           name = "privilege_id", referencedColumnName = "privilege_id"))
   @ToString.Exclude
-  @JsonIgnore
   private Set<Privilege> privileges;
 }

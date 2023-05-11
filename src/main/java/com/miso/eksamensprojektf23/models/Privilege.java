@@ -1,5 +1,6 @@
 package com.miso.eksamensprojektf23.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -25,5 +26,6 @@ public class Privilege {
 
   @ManyToMany(mappedBy = "privileges")
   @ToString.Exclude
+  @JsonIgnore
   private Set<Role> roles;
 }
