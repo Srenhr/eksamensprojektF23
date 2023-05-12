@@ -19,6 +19,7 @@ public class Privilege {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "privilege_id")
+  @JsonIgnore
   private Long privilegeId;
   @Column(unique = true)
   @NotNull

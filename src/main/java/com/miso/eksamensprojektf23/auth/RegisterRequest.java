@@ -1,7 +1,6 @@
 package com.miso.eksamensprojektf23.auth;
 
 
-import com.miso.eksamensprojektf23.models.Role;
 import lombok.*;
 
 import java.util.Set;
@@ -12,14 +11,11 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class RegisterRequest {
-  /*private Long userId;*/
+
   private String username;
   private String password;
   private String firstName;
   private String lastName;
   private String phoneNumber;
-  private Set<Role> roles;
-
-  /*private Set<String> role;*/
-
+  private Set<String> roles;
 }

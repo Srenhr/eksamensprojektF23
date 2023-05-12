@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,14 +20,15 @@ public class Role {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "role_id")
+  @JsonIgnore
   private Long roleId;
   @Column(unique = true)
   @NotNull
   private String name;
 
   @ManyToMany(mappedBy = "roles")
-  @JsonIgnore
   @ToString.Exclude
+  @JsonIgnore
   private Set<User> users;
 
   @ManyToMany(fetch = FetchType.EAGER)
@@ -37,5 +39,6 @@ public class Role {
       inverseJoinColumns = @JoinColumn(
           name = "privilege_id", referencedColumnName = "privilege_id"))
   @ToString.Exclude
-  private Set<Privilege> privileges;
+  @JsonIgnore
+  private Set<Privilege> privileges = new HashSet<>();
 }
