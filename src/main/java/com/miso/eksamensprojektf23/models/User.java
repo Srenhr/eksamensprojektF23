@@ -21,7 +21,7 @@ import java.util.*;
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class User implements UserDetails {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
   @Column(unique = true)
@@ -29,6 +29,13 @@ public class User implements UserDetails {
   private String username; /*email*/
   @NotNull
   private String password;
+  @NotNull
+  private String firstName;
+  @NotNull
+  private String lastName;
+  @Column(unique = true)
+  @NotNull
+  private String phoneNumber;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "users_roles",
@@ -36,7 +43,9 @@ public class User implements UserDetails {
           name = "user_id", referencedColumnName = "user_id"),
       inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "role_id"))
+/*
   @ToString.Exclude
+*/
   @JsonIgnore
   private Set<Role> roles = new HashSet<>();
 

@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @RestController
 public class CalendarController {
-
     
     @Autowired
     CalendarRepository calendarRepository;

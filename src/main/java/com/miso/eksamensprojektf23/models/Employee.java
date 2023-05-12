@@ -15,13 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class Employee extends User {
-  @NotNull
-  private String firstName;
-  @NotNull
-  private String lastName;
+
   @Column(unique = true)
   @NotNull
-  private String phoneNumber;
+  private String department; /*Not used for anything - just for show*/
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
@@ -39,10 +36,8 @@ public class Employee extends User {
   private Calendar calendar;
 
   @Builder(builderMethodName = "employeeBuilder")
-  public Employee(Long userId, @NotNull String username, @NotNull String password, Set<Role> roles, String firstName, String lastName, String phoneNumber) {
-    super(userId, username, password, roles);
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.phoneNumber = phoneNumber;
+  public Employee(Long userId, @NotNull String username, @NotNull String password, @NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber, Set<Role> roles, String department) {
+    super(userId, username, password, firstName, lastName, phoneNumber, roles);
+    this.department = department;
   }
 }

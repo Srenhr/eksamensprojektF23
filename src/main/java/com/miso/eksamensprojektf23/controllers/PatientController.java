@@ -1,19 +1,26 @@
 package com.miso.eksamensprojektf23.controllers;
 
+import com.miso.eksamensprojektf23.dtos.PatientDTO;
+import com.miso.eksamensprojektf23.models.Employee;
 import com.miso.eksamensprojektf23.models.Patient;
-import com.miso.eksamensprojektf23.repositories.PatientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.miso.eksamensprojektf23.services.EmployeeService;
+import com.miso.eksamensprojektf23.services.PatientService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
-@RestController
+@Controller
+@CrossOrigin
+@RequestMapping("/user")
+@RequiredArgsConstructor
+/*@RestController*/
 public class PatientController {
 
 
-    @Autowired
+/*    @Autowired
     PatientRepository patientRepository;
 
 
@@ -39,6 +46,47 @@ public class PatientController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
+
+  private final PatientService patientService;
+  private final EmployeeService employeeService;
+
+  @GetMapping("/patients")
+  public String listPatients(Model model) {
+    List<Patient> listPatients = patientService.getAllPatients();
+    model.addAttribute("listPatients", listPatients);
+    return "patients";
+  }
+
+  @GetMapping("/patient/edit/{id}")
+  public String editPatient(@PathVariable("id") Long id, Model model) {
+    Patient patient = patientService.getPatientById(id);
+    List<Employee> listEmployee = employeeService.getAllEmployees();
+    model.addAttribute("patient", patient);
+    model.addAttribute("listEmployee", listEmployee);
+    return "patient_edit_form";
+  }
+
+  @PostMapping("/patient/update")
+  public String updatePatient(PatientDTO patientDTO) {
+    patientService.updatePatient(patientDTO);
+    return "redirect:/user/patients";
+  }
+
+  @GetMapping("/patient/register")
+  public String editPatient(Model model) {
+    PatientDTO patientDTO = new PatientDTO();
+    List<Employee> listEmployee = employeeService.getAllEmployees();
+    model.addAttribute("patientDTO", patientDTO);
+    model.addAttribute("listEmployee", listEmployee);
+    return "patient_register_form";
+  }
+
+  @PostMapping("/patient/save")
+  public String savePatient(PatientDTO patientDTO) {
+    System.out.println(patientDTO);
+    patientService.savePatient(patientDTO);
+    return "redirect:/user/patients";
+  }
 
 }

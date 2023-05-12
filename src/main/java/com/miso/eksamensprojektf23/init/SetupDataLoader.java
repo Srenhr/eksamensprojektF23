@@ -47,23 +47,25 @@ public class SetupDataLoader implements
     Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
     Role roleUser = createRoleIfNotFound("ROLE_USER", userPrivileges);
 
-    Employee user = new Employee();
-    user.setFirstName("test");
-    user.setLastName("test");
-    user.setPassword(passwordEncoder.encode("test"));
-    user.setUsername("admin@test.com");
-    user.setPhoneNumber("+45123456789");
-    user.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
-    userRepository.save(user);
+    Employee employee = new Employee();
+    employee.setFirstName("test");
+    employee.setLastName("test");
+    employee.setPassword(passwordEncoder.encode("test"));
+    employee.setUsername("admin@test.com");
+    employee.setPhoneNumber("+45123456789");
+    employee.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
+    employee.setDepartment("Development");
+    userRepository.save(employee);
 
-    user = new Employee();
-    user.setFirstName("test");
-    user.setLastName("test");
-    user.setPassword(passwordEncoder.encode("test"));
-    user.setUsername("employee@test.com");
-    user.setPhoneNumber("+45987654321");
-    user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
-    userRepository.save(user);
+    employee = new Employee();
+    employee.setFirstName("test");
+    employee.setLastName("test");
+    employee.setPassword(passwordEncoder.encode("test"));
+    employee.setUsername("employee@test.com");
+    employee.setPhoneNumber("+45987654321");
+    employee.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
+    employee.setDepartment("Operations");
+    userRepository.save(employee);
 
     alreadySetup = true;
   }

@@ -1,7 +1,6 @@
 package com.miso.eksamensprojektf23.controllers;
 
 import com.miso.eksamensprojektf23.models.Employee;
-import com.miso.eksamensprojektf23.models.Role;
 import com.miso.eksamensprojektf23.repositories.EmployeeRepository;
 import com.miso.eksamensprojektf23.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin

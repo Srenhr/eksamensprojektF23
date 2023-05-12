@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -19,7 +20,7 @@ import java.util.Set;
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class Patient {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name = "patient_id")
   private Long patientId;
   @NotNull
@@ -33,11 +34,14 @@ public class Patient {
   @NotNull
   private String phoneNumber;
   @NotNull
+/*
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+*/
   private LocalDate birthdate;
   @NotNull
   private String reasonForRefferal;
 
-  @ManyToMany(mappedBy = "patients")
+  @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER)
   @ToString.Exclude
   private Set<Employee> employees;
 

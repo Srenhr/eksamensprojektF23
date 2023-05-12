@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="~{fragments/header :: head-files}"></div>
+    <title>Patients</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+<div th:replace="~{fragments/tdm :: tdm}"></div>
+
+<!-- Main -->
+<main class="container-fluid mx-auto" style="width: 90%;">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Patients</h1>
+    </div>
+
+    <a class="btn btn-lg btn-primary btn-block" th:href="@{/user/patient/register}">Register New Patient</a>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Patient ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>Phone Number</th>
+            <th>Birthdate</th>
+            <th>Reason for Refferal</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient: ${listPatients}">
+            <td th:text="${patient.patientId}">User ID</td>
+            <td th:text="${patient.firstName}">First Name</td>
+            <td th:text="${patient.lastName}">Last Name</td>
+            <td th:text="${patient.email}">E-mail</td>
+            <td th:text="${patient.phoneNumber}">Phone Number</td>
+            <td th:text="${patient.birthdate}">Birthdate</td>
+            <td th:text="${patient.reasonForRefferal}">Reason for Refferal</td>
+            <td><a th:href="@{'/user/patient/edit/' + ${patient.patientId}}">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

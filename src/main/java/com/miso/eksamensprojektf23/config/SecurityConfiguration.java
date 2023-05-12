@@ -24,10 +24,10 @@ public class SecurityConfiguration {
         .csrf()
         .disable()
         .authorizeHttpRequests((authz) -> authz
-            .requestMatchers("/js/**", "/css/**","/img/**","/scss/**", "/", "/home", "/about", "/error/**"/*, "/**"*/, "/public/**")
+            .requestMatchers("/js/**", "/css/**", "/img/**", "/scss/**", "/", "/home", "/about", "/error/**"/*, "/**"*/, "/public/**")
             .permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
-            .requestMatchers("/user/**").hasRole("USER")
+            .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
             .anyRequest()
             .authenticated())
         .formLogin()

@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "privileges")
 public class Privilege {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name = "privilege_id")
   @JsonIgnore
   private Long privilegeId;
