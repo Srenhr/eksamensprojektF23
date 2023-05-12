@@ -1,5 +1,6 @@
 package com.miso.eksamensprojektf23.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -7,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -39,7 +37,12 @@ public class User implements UserDetails {
       inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "role_id"))
   @ToString.Exclude
-  private Set<Role> roles;
+  @JsonIgnore
+  private Set<Role> roles = new HashSet<>();
+
+  public void addRole(Role role) {
+    this.roles.add(role);
+  }
 
   @Override
   public boolean isAccountNonExpired() {
