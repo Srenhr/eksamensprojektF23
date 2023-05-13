@@ -51,6 +51,7 @@ public class PatientController {
   private final PatientService patientService;
   private final EmployeeService employeeService;
 
+
   @GetMapping("/patients")
   public String listPatients(Model model) {
     List<Patient> listPatients = patientService.getAllPatients();
@@ -68,7 +69,7 @@ public class PatientController {
   }
 
   @PostMapping("/patient/update")
-  public String updatePatient(PatientDTO patientDTO) {
+  public String updatePatient( PatientDTO patientDTO) {
     patientService.updatePatient(patientDTO);
     return "redirect:/user/patients";
   }
@@ -83,7 +84,7 @@ public class PatientController {
   }
 
   @PostMapping("/patient/save")
-  public String savePatient(PatientDTO patientDTO) {
+  public String savePatient( PatientDTO patientDTO) {
     System.out.println(patientDTO);
     patientService.savePatient(patientDTO);
     return "redirect:/user/patients";

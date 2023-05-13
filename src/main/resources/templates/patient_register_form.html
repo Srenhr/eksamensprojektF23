@@ -68,10 +68,12 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Contact Persons: </label>
                 <div class="col-8">
-                    <th:block th:each="employee: ${listEmployee}">
-                        <input type="checkbox" th:field="*{employees}"
+                    <th:block th:each="employee, index: ${listEmployee}">
+                        <input type="checkbox" th:field="*{userIds}"
                                th:text="${employee.firstName+' '+employee.lastName}" th:value="${employee.userId}"
                                class="m-2"/>
+<!--                        <input type="hidden" th:field="*{employees[__${index}__].userId}"
+                               th:value="${employee.userId}"/>-->
                     </th:block>
                 </div>
             </div>

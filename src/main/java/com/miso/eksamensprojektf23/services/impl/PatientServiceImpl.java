@@ -50,7 +50,9 @@ public class PatientServiceImpl implements PatientService {
     patient.setPhoneNumber(patientDTO.getPhoneNumber());
     patient.setBirthdate(patientDTO.getBirthdate());
     patient.setReasonForRefferal(patientDTO.getReasonForRefferal());
-    patient.setEmployees(patientDTO.getEmployees()); /*TODO: skal ændres*/
+    /*patient.setEmployees(patientDTO.getEmployees())*/; /*TODO: skal ændres*/
     return patient;
   }
+
+
 }
