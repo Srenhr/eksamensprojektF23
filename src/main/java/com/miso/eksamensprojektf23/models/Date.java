@@ -22,8 +22,10 @@ public class Date {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "date_id")
   private Long dateId;
+
   @NotNull
   private LocalDate date;
+
   @ManyToOne
   @JoinColumn(name = "calendar_id")
   private Calendar calendar;

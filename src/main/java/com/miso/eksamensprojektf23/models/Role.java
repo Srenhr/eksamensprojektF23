@@ -22,6 +22,7 @@ public class Role {
   @Column(name = "role_id")
   @JsonIgnore
   private Long roleId;
+
   @Column(unique = true)
   @NotNull
   private String name;

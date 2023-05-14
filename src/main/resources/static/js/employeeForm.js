@@ -39,15 +39,19 @@ async function handleFormSubmit(event) {
 
 async function postFormData(url, formData) {
     console.log("postFormData");
-    const plainFormData = Object.fromEntries(formData.entries())
+    let plainFormData = Object.fromEntries(formData.entries())
     console.log("First plainFormData:")
     console.log(plainFormData)
     // TODO commenting this might fix potential issues with postFormData
     const ix = ddRoles.selectedIndex;
     console.log("ix: " + ix)
-    const linje = ddRoles[ix]
+    const linje = ddRoles[ix] // TODO Something's wrong with this code her but i dont know what.... (11/5)
     console.log("linje: " + linje)
-    plainFormData.roles = linje.role // Test for endpoint receiving a roles list instead of just a role
+    const logRole = linje.role;
+    console.log(logrole)
+    console.log(logRole.value)
+    console.log(logRole.role)
+    plainFormData.roles = linje.role  // Test for endpoint receiving a roles list instead of just a role
     console.log("Formdata.roles V ")
     console.log(plainFormData.roles)
     console.log("Second plainformdata:")

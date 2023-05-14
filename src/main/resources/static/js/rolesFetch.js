@@ -23,8 +23,8 @@ function fillRolesDropDown(role) {
     console.log(role)
     const el = document.createElement("option")
     el.textContent = role.name
-    el.value = role // role.roleId
-    el.role = role // backend employee currently use Set<> for roles
+    el.value = role.role // role.roleId
+    el.role = {roleId: role.roleId, name: role.name} // backend employee currently use Set<> for roles
     ddRoles.appendChild(el)
 }
 
