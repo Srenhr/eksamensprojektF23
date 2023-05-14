@@ -25,5 +25,5 @@ public class PatientDTO {
   */
   private LocalDate birthdate;
   private String reasonForRefferal;
-  private Set<Long> userIds;
+  private Set<Employee> employees;
 }

@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,7 +18,7 @@ import java.util.Set;
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class Patient {
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "patient_id")
   private Long patientId;
   @NotNull
@@ -41,17 +39,23 @@ public class Patient {
   @NotNull
   private String reasonForRefferal;
 
-  @ManyToMany(mappedBy = "patients", fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "employees_patients",
+      joinColumns = @JoinColumn(
+          name = "patient_id", referencedColumnName = "patient_id"),
+      inverseJoinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "user_id"))
   @ToString.Exclude
   private Set<Employee> employees;
 
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<Appointment> appointments = new HashSet<>();
+  private Set<Appointment> appointments;
 
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<PatientNote> patientNotes = new HashSet<>();
+  private Set<PatientNote> patientNotes;
 }

@@ -76,9 +76,9 @@ public class PatientController {
 
   @GetMapping("/patient/register")
   public String editPatient(Model model) {
-    PatientDTO patientDTO = new PatientDTO();
+    Patient patient = new Patient();
     List<Employee> listEmployee = employeeService.getAllEmployees();
-    model.addAttribute("patientDTO", patientDTO);
+    model.addAttribute("patient", patient);
     model.addAttribute("listEmployee", listEmployee);
     return "patient_register_form";
   }

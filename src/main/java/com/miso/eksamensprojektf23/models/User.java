@@ -43,11 +43,9 @@ public class User implements UserDetails {
           name = "user_id", referencedColumnName = "user_id"),
       inverseJoinColumns = @JoinColumn(
           name = "role_id", referencedColumnName = "role_id"))
-/*
   @ToString.Exclude
-*/
   @JsonIgnore
-  private Set<Role> roles = new HashSet<>();
+  private Set<Role> roles;
 
   public void addRole(Role role) {
     this.roles.add(role);

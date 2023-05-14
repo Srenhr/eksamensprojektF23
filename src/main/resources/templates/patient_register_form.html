@@ -18,7 +18,7 @@
         <h1 class="h2">Register Patient</h1>
     </div>
 
-    <form th:action="@{/user/patient/save}" th:object="${patientDTO}"
+    <form th:action="@{/user/patient/save}" th:object="${patient}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{patientId}"/>
         <div class="m-3">
@@ -68,12 +68,10 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Contact Persons: </label>
                 <div class="col-8">
-                    <th:block th:each="employee, index: ${listEmployee}">
-                        <input type="checkbox" th:field="*{userIds}"
+                    <th:block th:each="employee: ${listEmployee}">
+                        <input type="checkbox" th:field="*{employees}"
                                th:text="${employee.firstName+' '+employee.lastName}" th:value="${employee.userId}"
                                class="m-2"/>
-<!--                        <input type="hidden" th:field="*{employees[__${index}__].userId}"
-                               th:value="${employee.userId}"/>-->
                     </th:block>
                 </div>
             </div>

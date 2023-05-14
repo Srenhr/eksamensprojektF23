@@ -15,18 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class Employee extends User {
+  @Transient
+  private Long userId; /*This attributes only purpose is to make sure thymeleaf works properly, when returning objects from view.*/
 
   @Column(unique = true)
   @NotNull
   private String department; /*Not used for anything - just for show*/
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-      name = "employees_patients",
-      joinColumns = @JoinColumn(
-          name = "user_id", referencedColumnName = "user_id"),
-      inverseJoinColumns = @JoinColumn(
-          name = "patient_id", referencedColumnName = "patient_id"))
+  @ManyToMany(mappedBy = "employees")
   @ToString.Exclude
   private Set<Patient> patients;
 
@@ -36,8 +32,9 @@ public class Employee extends User {
   private Calendar calendar;
 
   @Builder(builderMethodName = "employeeBuilder")
-  public Employee(Long userId, @NotNull String username, @NotNull String password, @NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber, Set<Role> roles, String department) {
+  public Employee(Long userId, @NotNull String username, @NotNull String password, @NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber, Set<Role> roles, Long userId1, String department) {
     super(userId, username, password, firstName, lastName, phoneNumber, roles);
+    this.userId = userId1;
     this.department = department;
   }
 }

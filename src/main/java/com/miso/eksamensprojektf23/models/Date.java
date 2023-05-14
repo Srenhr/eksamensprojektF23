@@ -31,5 +31,5 @@ public class Date {
   @OneToMany(mappedBy = "date", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<Appointment> appointments = new HashSet<>();
+  private Set<Appointment> appointments;
 }

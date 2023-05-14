@@ -40,5 +40,5 @@ public class Role {
           name = "privilege_id", referencedColumnName = "privilege_id"))
   @ToString.Exclude
   @JsonIgnore
-  private Set<Privilege> privileges = new HashSet<>();
+  private Set<Privilege> privileges;
 }

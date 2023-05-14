@@ -30,6 +30,7 @@
             <th>Phone Number</th>
             <th>Birthdate</th>
             <th>Reason for Refferal</th>
+            <th>Associated Healthcare Worker(s)</th>
             <th></th>
         </tr>
         </thead>
@@ -42,6 +43,7 @@
             <td th:text="${patient.phoneNumber}">Phone Number</td>
             <td th:text="${patient.birthdate}">Birthdate</td>
             <td th:text="${patient.reasonForRefferal}">Reason for Refferal</td>
+            <td th:text="${patient.employees}">Reason for Refferal</td>
             <td><a th:href="@{'/user/patient/edit/' + ${patient.patientId}}">Edit</a></td>
         </tr>
         </tbody>

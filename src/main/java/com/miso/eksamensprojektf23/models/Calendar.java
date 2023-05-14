@@ -28,5 +28,5 @@ public class Calendar {
   @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<Date> dates = new HashSet<>();
+  private Set<Date> dates;
 }
