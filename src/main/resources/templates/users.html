@@ -31,14 +31,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user: ${listUsers}">
+        <tr th:each="user, i: ${listUsers}">
             <td th:text="${user.userId}">User ID</td>
             <td th:text="${user.username}">E-mail</td>
             <td th:text="${user.firstName}">First Name</td>
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.phoneNumber}">Phone Number</td>
-            <td th:text="${user.roles}">Roles</td>
-            <td><a th:href="@{'/admin/auth/user/edit/' + ${user.userId}}">Edit</a></td>
+            <td>
+                <th:block th:each="role : ${user.roles}">
+                    <p th:text="${role.tag}">Roles</p>
+                </th:block>
+            </td>
+            <td><a class="btn btn-md btn-primary btn-block"
+                   th:href="@{'/admin/auth/user/edit/' + ${user.userId}}">Edit</a></td>
         </tr>
         </tbody>
     </table>

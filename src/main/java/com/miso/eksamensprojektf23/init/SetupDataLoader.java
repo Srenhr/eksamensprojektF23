@@ -1,10 +1,10 @@
 package com.miso.eksamensprojektf23.init;
 
 
-import com.miso.eksamensprojektf23.models.Employee;
 import com.miso.eksamensprojektf23.models.Patient;
 import com.miso.eksamensprojektf23.models.Privilege;
 import com.miso.eksamensprojektf23.models.Role;
+import com.miso.eksamensprojektf23.models.User;
 import com.miso.eksamensprojektf23.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
@@ -22,8 +22,6 @@ public class SetupDataLoader implements
     ApplicationListener<ContextRefreshedEvent> {
 
   private final UserRepository userRepository;
-
-  private final EmployeeRepository employeeRepository;
   private final RoleRepository roleRepository;
   private final PrivilegeRepository privilegeRepository;
   private final PatientRepository patientRepository;
@@ -47,28 +45,26 @@ public class SetupDataLoader implements
     Set<Privilege> adminPrivileges = new HashSet<>(Arrays.asList(
         readPrivilege, writePrivilege, updatePrivilege, deletePrivilege));
     Set<Privilege> userPrivileges = new HashSet<>(Arrays.asList(readPrivilege, writePrivilege, updatePrivilege));
-    Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
-    Role roleUser = createRoleIfNotFound("ROLE_USER", userPrivileges);
+    Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", "Admin", adminPrivileges);
+    Role roleUser = createRoleIfNotFound("ROLE_USER", "User", userPrivileges);
 
-    Employee employee = new Employee();
-    employee.setFirstName("test");
-    employee.setLastName("test");
-    employee.setPassword(passwordEncoder.encode("test"));
-    employee.setUsername("admin@test.com");
-    employee.setPhoneNumber("+4512345678");
-    employee.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
-    employee.setDepartment("Development");
-    employeeRepository.save(employee);
+    User user = new User();
+    user.setFirstName("test");
+    user.setLastName("test");
+    user.setPassword(passwordEncoder.encode("test"));
+    user.setUsername("admin@test.com");
+    user.setPhoneNumber("+4512345678");
+    user.setRoles(new HashSet<>(Collections.singletonList(roleAdmin)));
+    userRepository.save(user);
 
-    employee = new Employee();
-    employee.setFirstName("test");
-    employee.setLastName("test");
-    employee.setPassword(passwordEncoder.encode("test"));
-    employee.setUsername("employee@test.com");
-    employee.setPhoneNumber("+4587654321");
-    employee.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
-    employee.setDepartment("Operations");
-    employeeRepository.save(employee);
+    user = new User();
+    user.setFirstName("test");
+    user.setLastName("test");
+    user.setPassword(passwordEncoder.encode("test"));
+    user.setUsername("user@test.com");
+    user.setPhoneNumber("+4587654321");
+    user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
+    userRepository.save(user);
 
     Patient patient = new Patient();
     patient.setFirstName("test");
@@ -77,7 +73,7 @@ public class SetupDataLoader implements
     patient.setPhoneNumber("+4523456789");
     patient.setBirthdate(LocalDate.parse("1991-04-21"));
     patient.setReasonForRefferal("test");
-    patient.setEmployees(new HashSet<>(employeeRepository.findAll()));
+    patient.setUsers(new HashSet<>(userRepository.findAll()));
     patientRepository.save(patient);
 
     alreadySetup = true;
@@ -98,13 +94,14 @@ public class SetupDataLoader implements
 
   @Transactional
   Role createRoleIfNotFound(
-      String name, Set<Privilege> privileges) {
+      String name, String tag, Set<Privilege> privileges) {
 
     Optional<Role> optRole = roleRepository.findRoleByName(name);
     Role role = null;
     if (optRole.isEmpty()) {
       role = new Role();
       role.setName(name);
+      role.setTag(tag);
       role.setPrivileges(privileges);
       roleRepository.save(role);
     }

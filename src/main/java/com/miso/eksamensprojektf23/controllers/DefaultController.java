@@ -1,11 +1,13 @@
 package com.miso.eksamensprojektf23.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @CrossOrigin
+@RequiredArgsConstructor
 public class DefaultController {
 
   @GetMapping("/")

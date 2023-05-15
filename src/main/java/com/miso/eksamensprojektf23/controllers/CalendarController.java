@@ -22,11 +22,11 @@ public class CalendarController {
     
     
     
-    @GetMapping("/calendar/{employeeId}")
+/*    @GetMapping("/calendar/{employeeId}")
     public Calendar getCalendarByEmployeeId(@PathVariable int employeeId) {
         // TODO add optional to
         return calendarRepository.findCalendarByEmployee_UserId(employeeId);
-        /*
+        *//*
         Optional<Calendar> optKommune = calendarRepository.findById(employeeId);
         if (optKommune.isPresent()) {
             calendarRepository.save();
@@ -35,7 +35,7 @@ public class CalendarController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-         */
-    }
+         *//*
+    }*/
 
 }

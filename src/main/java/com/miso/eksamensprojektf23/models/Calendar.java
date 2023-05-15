@@ -22,8 +22,8 @@ public class Calendar {
   private Long calendarId;
 
   @OneToOne
-  @JoinColumn(name = "employee_id")
-  private Employee employee;
+  @JoinColumn(name = "user_id")
+  private User user;
 
   @OneToMany(mappedBy = "calendar", cascade = CascadeType.ALL)
   @JsonIgnore

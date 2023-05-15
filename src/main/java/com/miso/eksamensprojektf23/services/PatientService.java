@@ -1,7 +1,6 @@
 package com.miso.eksamensprojektf23.services;
 
 
-import com.miso.eksamensprojektf23.dtos.PatientDTO;
 import com.miso.eksamensprojektf23.models.Patient;
 
 import java.util.List;
@@ -12,9 +11,9 @@ public interface PatientService {
 
   List<Patient> getAllPatients();
 
-  void updatePatient(PatientDTO patientDTO);
+  void updatePatient(Patient patient);
 
-  void savePatient(PatientDTO patientDTO);
+  void savePatient(Patient patient);
 
 
 

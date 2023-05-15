@@ -8,10 +8,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+/*@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+    name = "user_type",
+    discriminatorType = DiscriminatorType.STRING
+)*/
 @Table(name = "users")
 @Getter
 @Setter
@@ -21,7 +28,7 @@ import java.util.*;
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 public class User implements UserDetails {
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
   @Column(unique = true)
@@ -33,6 +40,8 @@ public class User implements UserDetails {
   private String firstName;
   @NotNull
   private String lastName;
+  @Transient
+  private String name;
   @Column(unique = true)
   @NotNull
   private String phoneNumber;
@@ -46,6 +55,16 @@ public class User implements UserDetails {
   @ToString.Exclude
   @JsonIgnore
   private Set<Role> roles;
+
+  @ManyToMany(mappedBy = "users")
+  @ToString.Exclude
+  @JsonIgnore
+  private Set<Patient> patients;
+
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @JsonIgnore
+  private Calendar calendar;
 
   public void addRole(Role role) {
     this.roles.add(role);
@@ -95,5 +114,9 @@ public class User implements UserDetails {
   @Override
   public String getPassword() {
     return password;
+  }
+
+  public String getName() {
+    return this.firstName + " " + this.lastName;
   }
 }

@@ -41,13 +41,13 @@ public class Patient {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
-      name = "employees_patients",
+      name = "users_patients",
       joinColumns = @JoinColumn(
           name = "patient_id", referencedColumnName = "patient_id"),
       inverseJoinColumns = @JoinColumn(
           name = "user_id", referencedColumnName = "user_id"))
   @ToString.Exclude
-  private Set<Employee> employees;
+  private Set<User> users;
 
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
@@ -58,4 +58,10 @@ public class Patient {
   @JsonIgnore
   @ToString.Exclude
   private Set<PatientNote> patientNotes;
+
+  public void addUser(User user) {
+    this.users.add(user);
+  }
+
+
 }

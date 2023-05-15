@@ -1,7 +1,6 @@
 package com.miso.eksamensprojektf23.services.impl;
 
 
-import com.miso.eksamensprojektf23.dtos.PatientDTO;
 import com.miso.eksamensprojektf23.models.Patient;
 import com.miso.eksamensprojektf23.repositories.PatientRepository;
 import com.miso.eksamensprojektf23.services.PatientService;
@@ -29,30 +28,22 @@ public class PatientServiceImpl implements PatientService {
   }
 
   @Override
-  public void updatePatient(PatientDTO patientDTO) {
-    Patient patient = patientRepository.findById(patientDTO.getPatientId())
-        .orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientDTO.getPatientId()));
-    patient = fillPatientObject(patientDTO, patient);
-    patientRepository.save(patient);
+  public void updatePatient(Patient patientModel) {
+    Patient newPatient = patientRepository.findById(patientModel.getPatientId())
+        .orElseThrow(() -> new EntityNotFoundException("Patient not found with id: " + patientModel.getPatientId()));
+    newPatient.setFirstName(patientModel.getFirstName());
+    newPatient.setLastName(patientModel.getLastName());
+    newPatient.setEmail(patientModel.getEmail());
+    newPatient.setPhoneNumber(patientModel.getPhoneNumber());
+    newPatient.setBirthdate(patientModel.getBirthdate());
+    newPatient.setReasonForRefferal(patientModel.getReasonForRefferal());
+    newPatient.setUsers(patientModel.getUsers());
+    patientRepository.save(newPatient);
   }
 
   @Override
-  public void savePatient(PatientDTO patientDTO) {
-    Patient patient = new Patient();
-    patient = fillPatientObject(patientDTO, patient);
+  public void savePatient(Patient patient) {
     patientRepository.save(patient);
   }
-
-  public Patient fillPatientObject(PatientDTO patientDTO, Patient patient) {
-    patient.setFirstName(patientDTO.getFirstName());
-    patient.setLastName(patientDTO.getLastName());
-    patient.setEmail(patientDTO.getEmail());
-    patient.setPhoneNumber(patientDTO.getPhoneNumber());
-    patient.setBirthdate(patientDTO.getBirthdate());
-    patient.setReasonForRefferal(patientDTO.getReasonForRefferal());
-    patient.setEmployees(patientDTO.getEmployees());
-    return patient;
-  }
-
 
 }

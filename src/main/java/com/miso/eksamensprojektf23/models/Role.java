@@ -25,6 +25,9 @@ public class Role {
   @Column(unique = true)
   @NotNull
   private String name;
+  @Column(unique = true)
+  @NotNull
+  private String tag;
 
   @ManyToMany(mappedBy = "roles")
   @ToString.Exclude
