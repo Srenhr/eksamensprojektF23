@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/admin/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -40,7 +40,7 @@ public class AuthenticationController {
   public String updateUser(User user) {
     System.out.println(user);
     userService.updateUser(user);
-    return "redirect:/admin/auth/users";
+    return "redirect:/auth/users";
   }
 
 }

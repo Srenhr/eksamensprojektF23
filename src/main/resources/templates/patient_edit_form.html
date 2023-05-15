@@ -18,7 +18,7 @@
         <h1 class="h2">Edit Patient</h1>
     </div>
 
-    <form th:action="@{/user/patient/update}" th:object="${patient}"
+    <form th:action="@{/patient/update}" th:object="${patient}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{patientId}"/>
         <div class="m-3">

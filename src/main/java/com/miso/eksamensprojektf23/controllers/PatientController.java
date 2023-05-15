@@ -13,7 +13,6 @@ import java.util.List;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/user")
 @RequiredArgsConstructor
 public class PatientController {
 
@@ -40,7 +39,7 @@ public class PatientController {
   @PostMapping("/patient/update")
   public String updatePatient( Patient patient) {
     patientService.updatePatient(patient);
-    return "redirect:/user/patients";
+    return "redirect:/patients";
   }
 
   @GetMapping("/patient/register")
@@ -55,7 +54,7 @@ public class PatientController {
   @PostMapping("/patient/save")
   public String savePatient( Patient patient) {
     patientService.savePatient(patient);
-    return "redirect:/user/patients";
+    return "redirect:/patients";
   }
 
 }
