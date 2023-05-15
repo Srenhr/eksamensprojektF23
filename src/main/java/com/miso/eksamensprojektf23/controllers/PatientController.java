@@ -43,7 +43,7 @@ public class PatientController {
   }
 
   @GetMapping("/patient/register")
-  public String editPatient(Model model) {
+  public String registerPatient(Model model) {
     Patient patient = new Patient();
     List<User> listUsers = userService.getAllUsers();
     model.addAttribute("patient", patient);

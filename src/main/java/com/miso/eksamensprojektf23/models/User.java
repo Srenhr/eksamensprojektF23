@@ -61,14 +61,10 @@ public class User implements UserDetails {
   @JsonIgnore
   private Set<Patient> patients;
 
-  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   @ToString.Exclude
   @JsonIgnore
-  private Calendar calendar;
-
-  public void addRole(Role role) {
-    this.roles.add(role);
-  }
+  private Set<Appointment> appointments;
 
   @Override
   public boolean isAccountNonExpired() {
@@ -110,7 +106,6 @@ public class User implements UserDetails {
     return username;
   }
 
-
   @Override
   public String getPassword() {
     return password;
@@ -118,5 +113,19 @@ public class User implements UserDetails {
 
   public String getName() {
     return this.firstName + " " + this.lastName;
+  }
+
+  public void addRole(Role role) {
+    roles.add(role);
+  }
+
+  public void addAppointment(Appointment appointment) {
+    this.appointments.add(appointment);
+    appointment.setUser(this);
+  }
+
+  public void removeAppointment(Appointment appointment) {
+    this.appointments.remove(appointment);
+    appointment.setUser(null);
   }
 }
