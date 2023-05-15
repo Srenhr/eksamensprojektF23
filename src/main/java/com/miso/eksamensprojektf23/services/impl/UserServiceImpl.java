@@ -42,13 +42,18 @@ public class UserServiceImpl implements UserService {
     user.setPassword(passwordEncoder.encode(request.getPassword()));
     user.setPhoneNumber(request.getPhoneNumber());
     user.setRoles(request.getRoles());
-    userRepository.save(user);
-  }
-
-  public void registerDefaultUser(User user) {
     Role roleUser = roleRepository.findRoleByName("ROLE_USER")
         .orElseThrow(() -> new EntityNotFoundException("Role not found with name: ROLE_USER"));
     user.addRole(roleUser);
     userRepository.save(user);
   }
+
+  public void saveDefaultUser(User user) {
+    Role roleUser = roleRepository.findRoleByName("ROLE_USER")
+        .orElseThrow(() -> new EntityNotFoundException("Role not found with name: ROLE_USER"));
+    user.addRole(roleUser);
+    userRepository.save(user);
+  }
+
+
 }

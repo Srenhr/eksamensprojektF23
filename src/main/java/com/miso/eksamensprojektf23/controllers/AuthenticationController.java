@@ -43,4 +43,19 @@ public class AuthenticationController {
     return "redirect:/auth/users";
   }
 
+  @GetMapping("/user/register")
+  public String registerUser(Model model) {
+    User user = new User();
+    List<Role> listRoles = roleService.getAllRoles();
+    model.addAttribute("user", user);
+    model.addAttribute("listRoles", listRoles);
+    return "user_register_form";
+  }
+
+  @PostMapping("/user/save")
+  public String saveUser(User user) {
+    userService.saveDefaultUser(user);
+    return "redirect:/auth/users";
+  }
+
 }

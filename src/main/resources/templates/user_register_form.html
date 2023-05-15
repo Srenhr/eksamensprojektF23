@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Edit User</title>
+    <title>Register User</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -15,10 +15,10 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit User</h1>
+        <h1 class="h2">Register User</h1>
     </div>
 
-    <form th:action="@{/auth/user/update}" th:object="${user}"
+    <form th:action="@{/auth/user/save}" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{userId}"/>
         <div class="m-3">
@@ -73,7 +73,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </form>

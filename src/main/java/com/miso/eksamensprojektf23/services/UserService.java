@@ -1,12 +1,9 @@
 package com.miso.eksamensprojektf23.services;
 
 
-
-
 import com.miso.eksamensprojektf23.models.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
@@ -16,6 +13,6 @@ public interface UserService {
 
   void updateUser(User user);
 
-  void registerDefaultUser(User user);
+  void saveDefaultUser(User user);
 
 }

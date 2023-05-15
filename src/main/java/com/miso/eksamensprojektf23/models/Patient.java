@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -32,9 +33,7 @@ public class Patient {
   @NotNull
   private String phoneNumber;
   @NotNull
-/*
   @DateTimeFormat(pattern = "yyyy-MM-dd")
-*/
   private LocalDate birthdate;
   @NotNull
   private String reasonForRefferal;
@@ -57,11 +56,18 @@ public class Patient {
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<PatientNote> patientNotes;
+  private Set<JournalEntry> journalEntries;
 
-  public void addUser(User user) {
-    this.users.add(user);
+  /*TODO: Kommer nok ikke til at blive brugt*/
+/*  public void addAppointment(Appointment appointment) {
+    appointments.add(appointment);
+    appointment.setPatient(this);
   }
+
+  public void removeAppointment(Appointment appointment) {
+    appointments.remove(appointment);
+    appointment.setPatient(null);
+  }*/
 
 
 }

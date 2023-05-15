@@ -1,8 +1,9 @@
 package com.miso.eksamensprojektf23.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Calendar;
 
 @Entity
 @Table(name = "appointments")
@@ -18,16 +19,14 @@ public class Appointment {
   @Column(name = "appointment_id")
   private Long appointmentId;
 
+  @Temporal(TemporalType.TIMESTAMP)
+  private Calendar appointmentDate;
+
   @ManyToOne
-  @JoinColumn(name = "date_id")
-  private Date date;
+  @JoinColumn(name = "user_id")
+  private User user;
 
   @ManyToOne
   @JoinColumn(name = "patient_id")
   private Patient patient;
-
-  @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
-  @JsonIgnore
-  @ToString.Exclude
-  private AppointmentNote appointmentNote;
 }
