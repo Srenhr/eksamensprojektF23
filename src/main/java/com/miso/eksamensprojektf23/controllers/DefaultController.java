@@ -25,9 +25,9 @@ public class DefaultController {
     return "dashboard";
   }
 
-  @GetMapping("/admin")
-  public String admin() {
-    return "admin";
+  @GetMapping("/calendar")
+  public String calendar() {
+    return "calendar";
   }
 
   @GetMapping("/about")
@@ -42,12 +42,12 @@ public class DefaultController {
 
   @GetMapping("/failure")
   public String error401() {
-    return "error/401";
+    return "errors/401";
   }
 
   @GetMapping("/403")
   public String error403() {
-    return "error/403";
+    return "errors/403";
   }
 
   @GetMapping("/test")
