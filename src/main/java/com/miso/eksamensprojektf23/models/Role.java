@@ -2,10 +2,9 @@ package com.miso.eksamensprojektf23.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,19 +13,19 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
+@ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
 @Table(name = "roles")
 public class Role {
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "role_id")
   @JsonIgnore
   private Long roleId;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String name;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String tag;
 
   @ManyToMany(mappedBy = "roles")
@@ -35,12 +34,7 @@ public class Role {
   private Set<User> users;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-      name = "roles_privileges",
-      joinColumns = @JoinColumn(
-          name = "role_id", referencedColumnName = "role_id"),
-      inverseJoinColumns = @JoinColumn(
-          name = "privilege_id", referencedColumnName = "privilege_id"))
+  @JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "privilege_id"))
   @ToString.Exclude
   @JsonIgnore
   private Set<Privilege> privileges;

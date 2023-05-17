@@ -32,17 +32,19 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone Number</th>
+            <th>Enabled</th>
             <th>Roles</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user, i: ${listUsers}">
+        <tr th:each="user, i: ${users}">
             <td th:text="${user.userId}">User ID</td>
             <td th:text="${user.username}">Username/E-mail</td>
             <td th:text="${user.firstName}">First Name</td>
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.phoneNumber}">Phone Number</td>
+            <td th:text="${user.enabled}">Enabled</td>
             <td>
                 <th:block th:each="role : ${user.roles}">
                     <p th:text="${role.tag}">Roles</p>

@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Associated Healthcare Worker(s): </label>
                 <div class="col-8">
-                    <th:block th:each="user: ${listUsers}">
+                    <th:block th:each="user: ${users}">
                         <input type="checkbox" th:field="*{users}"
                                th:text="${user.name}" th:value="${user.userId}"
                                class="m-2"/>

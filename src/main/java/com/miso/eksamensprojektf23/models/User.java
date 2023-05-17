@@ -2,7 +2,7 @@ package com.miso.eksamensprojektf23.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,37 +14,33 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-/*@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-    name = "user_type",
-    discriminatorType = DiscriminatorType.STRING
-)*/
-@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
+@Table(name = "users")
 public class User implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String username; /*email*/
-  @NotNull
+  @NotBlank
   private String password;
-  @NotNull
+  @NotBlank
   private String firstName;
-  @NotNull
+  @NotBlank
   private String lastName;
   @Transient
   private String name;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String phoneNumber;
+  private boolean enabled;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "users_roles",
@@ -56,7 +52,7 @@ public class User implements UserDetails {
   @JsonIgnore
   private Set<Role> roles;
 
-  @ManyToMany(mappedBy = "users")
+  @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
   @ToString.Exclude
   @JsonIgnore
   private Set<Patient> patients;
@@ -65,6 +61,12 @@ public class User implements UserDetails {
   @ToString.Exclude
   @JsonIgnore
   private Set<Appointment> appointments;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @ToString.Exclude
+  @JsonIgnore
+  private Set<Note> notes;
+
 
   @Override
   public boolean isAccountNonExpired() {
@@ -83,7 +85,7 @@ public class User implements UserDetails {
 
   @Override
   public boolean isEnabled() {
-    return true;
+    return enabled;
   }
 
   @Override
@@ -117,15 +119,5 @@ public class User implements UserDetails {
 
   public void addRole(Role role) {
     roles.add(role);
-  }
-
-  public void addAppointment(Appointment appointment) {
-    this.appointments.add(appointment);
-    appointment.setUser(this);
-  }
-
-  public void removeAppointment(Appointment appointment) {
-    this.appointments.remove(appointment);
-    appointment.setUser(null);
   }
 }

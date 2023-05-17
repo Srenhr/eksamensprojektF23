@@ -19,7 +19,8 @@
                     <a href="#"
                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/SrenhrKEA.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <img src="https://github.com/SrenhrKEA.png" alt="" width="32" height="32"
+                             class="rounded-circle me-2">
                         <!--TODO: Placeholder = mit eget github billede -->
                         <strong sec:authorize="isAuthenticated()"><span
                                 sec:authentication="principal.username"></span></strong>
@@ -98,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" th:href="@{/records}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-file align-text-bottom"
@@ -106,22 +107,22 @@
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
-                                Opret Forløbsnotat
+                                Journalføring
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-layers align-text-bottom"
-                                     aria-hidden="true">
-                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                    <polyline points="2 17 12 22 22 17"></polyline>
-                                    <polyline points="2 12 12 17 22 12"></polyline>
-                                </svg>
-                                Forløbsnotater
-                            </a>
-                        </li>
+                        <!--                        <li class="nav-item">
+                                                    <a class="nav-link" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                             stroke-linejoin="round" class="feather feather-layers align-text-bottom"
+                                                             aria-hidden="true">
+                                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                                            <polyline points="2 17 12 22 22 17"></polyline>
+                                                            <polyline points="2 12 12 17 22 12"></polyline>
+                                                        </svg>
+                                                        Forløbsnotater
+                                                    </a>
+                                                </li>-->
                     </ul>
                 </div>
             </div>

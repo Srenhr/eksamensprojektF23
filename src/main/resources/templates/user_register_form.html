@@ -23,6 +23,14 @@
         <input type="hidden" th:field="*{userId}"/>
         <div class="m-3">
             <div class="form-group row">
+                <label class="col-4 col-form-label">Enabled: </label>
+                <div class="col-8">
+                    <input type="checkbox" checked disabled
+                           th:text="Enabled" class="m-2"/> <!--Dummy-->
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-4 col-form-label">Username/E-mail: </label>
                 <div class="col-8">
                     <input type="email" th:field="*{username}" class="form-control" required/>
@@ -63,8 +71,8 @@
                 <label class="col-4 col-form-label">Roles: </label>
                 <div class="col-8">
                     <input type="checkbox" checked disabled
-                           th:text="User" class="m-2"/>
-                    <th:block th:each="role: ${listRoles}">
+                           th:text="User" class="m-2"/> <!--Dummy-->
+                    <th:block th:each="role: ${roles}">
                         <input type="checkbox" th:field="*{roles}"
                                th:text="${role.tag}" th:unless="${role.tag == 'User'}" th:value="${role.roleId}"
                                class="m-2"/>

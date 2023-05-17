@@ -31,7 +31,9 @@ public class SecurityConfiguration {
             .authenticated())
         .formLogin()
         .loginPage("/login")
+/*
         .failureUrl("/failure")
+*/
         .permitAll()
         .and()
         .logout()

@@ -1,6 +1,7 @@
 package com.miso.eksamensprojektf23.services.impl;
 
 
+import com.miso.eksamensprojektf23.models.Patient;
 import com.miso.eksamensprojektf23.models.Role;
 import com.miso.eksamensprojektf23.models.User;
 import com.miso.eksamensprojektf23.repositories.RoleRepository;
@@ -12,7 +13,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,12 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  public User getUserByUsername(String username) {
+    return userRepository.findUserByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+  }
+
+  @Override
   public List<User> getAllUsers() {
     return userRepository.findAll();
   }
@@ -41,6 +50,7 @@ public class UserServiceImpl implements UserService {
     user.setUsername(request.getUsername());
     user.setPassword(passwordEncoder.encode(request.getPassword()));
     user.setPhoneNumber(request.getPhoneNumber());
+    user.setEnabled(request.isEnabled());
     user.setRoles(request.getRoles());
     Role roleUser = roleRepository.findRoleByName("ROLE_USER")
         .orElseThrow(() -> new EntityNotFoundException("Role not found with name: ROLE_USER"));
@@ -52,8 +62,20 @@ public class UserServiceImpl implements UserService {
     Role roleUser = roleRepository.findRoleByName("ROLE_USER")
         .orElseThrow(() -> new EntityNotFoundException("Role not found with name: ROLE_USER"));
     user.addRole(roleUser);
+    user.setEnabled(true);
     userRepository.save(user);
   }
 
+  public List<Patient> getPatientsByUsername(String username) {
+    User user = userRepository.findUserByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + username));
+    if (user != null) {
+      Set<Patient> patients = user.getPatients();
+      // Convert Set to List
+      return new ArrayList<>(patients);
+    } else {
+      return new ArrayList<>();
+    }
+  }
 
 }
