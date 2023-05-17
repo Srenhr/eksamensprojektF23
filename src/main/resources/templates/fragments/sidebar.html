@@ -8,7 +8,7 @@
 
 <div th:fragment="sidebar" th:remove="tag">
 
-    <!-- Sidebar-->
+    <!-- Sidebar - Modal -->
     <div>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
              aria-labelledby="offcanvasExampleLabel"
@@ -20,8 +20,7 @@
                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/SrenhrKEA.png" alt="" width="32" height="32"
-                             class="rounded-circle me-2">
-                        <!--TODO: Placeholder = mit eget github billede -->
+                             class="rounded-circle me-2"> <!-- Placeholder image from my own github profile -->
                         <strong sec:authorize="isAuthenticated()"><span
                                 sec:authentication="principal.username"></span></strong>
                     </a>
@@ -46,7 +45,8 @@
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" th:href="@{/dashboard}">
+                            <a class="nav-link px-2 text-body-secondary active" aria-current="page"
+                               th:href="@{/dashboard}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-home align-text-bottom"
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a class="nav-link" th:href="@{/auth/users}">
+                            <a class="nav-link px-2 text-body-secondary" th:href="@{/auth/users}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-users align-text-bottom"
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/patients}">
+                            <a class="nav-link px-2 text-body-secondary" th:href="@{/patients}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-users align-text-bottom"
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/calendar}">
+                            <a class="nav-link px-2 text-body-secondary" th:href="@{/calendar}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-calendar">
@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/records}">
+                            <a class="nav-link px-2 text-body-secondary" th:href="@{/records}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-file align-text-bottom"
@@ -110,19 +110,6 @@
                                 Journalføring
                             </a>
                         </li>
-                        <!--                        <li class="nav-item">
-                                                    <a class="nav-link" href="#">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                             stroke-linejoin="round" class="feather feather-layers align-text-bottom"
-                                                             aria-hidden="true">
-                                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                                            <polyline points="2 17 12 22 22 17"></polyline>
-                                                            <polyline points="2 12 12 17 22 12"></polyline>
-                                                        </svg>
-                                                        Forløbsnotater
-                                                    </a>
-                                                </li>-->
                     </ul>
                 </div>
             </div>

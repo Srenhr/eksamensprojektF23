@@ -27,6 +27,7 @@ public class Note {
   private AppointmentType appointmentType;
 
   @NotBlank
+  /*@Column(columnDefinition = "TEXT")*/ /*TODO: type får det hele til at crashe. find en løsning*/
   private String textBody;
 
   // Get the current LocalDateTime
