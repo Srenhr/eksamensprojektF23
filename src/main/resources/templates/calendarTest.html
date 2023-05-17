@@ -22,12 +22,19 @@
         .then(data => {
           // Format the appointment data for FullCalendar
           var events = data.map(appointment => ({
-            id: appointment.user.name,
-            title: appointment.startTimeIso8601.eventTimeFormat.hour + ":" + appointment.startTimeIso8601.eventTimeFormat.minute + " - " + appointment.endTimeIso8601.hour + ":" + appointment.endTimeIso8601.minute,
+            id: appointment.id,
+              title: appointment.user.firstName + ' ' + appointment.user.lastName,
             start: appointment.startTimeIso8601,
             end: appointment.endTimeIso8601,
             // Add any additional properties or formatting as needed
           }));
+
+            function formatTime(time) {
+                var date = new Date(time);
+                var hour = date.getHours();
+                var minute = date.getMinutes();
+                return ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2);
+            }
 
           // Initialize FullCalendar
           var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -38,9 +45,10 @@
             events: events,
             // Specify the event time format for display
             eventTimeFormat: {
-              hour: 'numeric',
+              hour: '2-digit',
               minute: '2-digit',
-              meridiem: 'short'
+                hour12: false,
+                hour24: true
             },
             // Add event click handler
             eventClick: function(info) {
