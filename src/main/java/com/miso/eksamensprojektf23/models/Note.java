@@ -27,7 +27,8 @@ public class Note {
   private AppointmentType appointmentType;
 
   @NotBlank
-  /*@Column(columnDefinition = "TEXT")*/ /*TODO: type får det hele til at crashe. find en løsning*/
+  @Lob
+  @Column( length = 65535) /*Makes sure String is persisted as TEXT in database instead of varchar(255)*/
   private String textBody;
 
   // Get the current LocalDateTime
