@@ -27,34 +27,40 @@
     <!-- Header -->
     <header>
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light"
-             aria-label="Tenth navbar example">
-            <div class="container-fluid collapse navbar-collapse justify-content-sm-around">
-                <div class="nav-item">
-                    <a sec:authorize="isAuthenticated()" class="nav-link" data-bs-toggle="offcanvas"
-                       href="#offcanvasExample" role="button"
-                       aria-controls="offcanvasExample">
+        <nav class="navbar py-4" aria-label="fragmentNavbar">
+            <div class="container-fluid justify-content-between align-items-center" style="width: 90%">
+                <div class="nav-item" id="menu">
+                    <a sec:authorize="isAuthenticated()"
+                       class="nav-link d-flex align-items-center justify-content-center fw-bold"
+                       data-bs-toggle="offcanvas" href="#offcanvasSidebar" role="button"
+                       aria-controls="offcanvasSidebar">
                         MENU <span class="navbar-toggler-icon"></span>
                     </a> <!--Id is being used in sidebar.html-->
                 </div>
-                <div class="nav-item justify-content-md-center">
-                    <a class="navbar-brand" th:href="@{/home}">Blindeinstituttet</a>
-                </div>
-                <div class="nav-item">
+                <div class="nav-item" id="login">
                     <div sec:authorize="isAnonymous()">
                         <form th:action="@{/dashboard}" method="get">
-                            <input class="nav-link" type="submit" value="Sign In"/>
+                            <input class="nav-link fw-bold" type="submit" value="SIGN IN"/>
                         </form>
                     </div>
                     <div sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" method="post">
-                            <input class="nav-link" type="submit" value="Sign Out"/>
+                            <input class="nav-link fw-bold" type="submit" value="SIGN OUT"/>
                         </form>
                     </div>
                 </div>
             </div>
         </nav>
+        <div id="logo">
+            <a th:href="@{/home}">
+                <img width="200" height="76"
+                     src="https://ibos.dk/wp-content/uploads/2021/05/cropped-IBOS-logo-PNG-format.png"
+                     class="custom-logo" alt="IBOS logo - link til forside">
+            </a>
+        </div>
     </header>
+
+
 </div>
 
 </body>

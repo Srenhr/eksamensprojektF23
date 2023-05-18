@@ -10,11 +10,11 @@
 
     <!-- Sidebar - Modal -->
     <div>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-             aria-labelledby="offcanvasExampleLabel"
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar"
+             aria-labelledby="offcanvasSidebarLabel"
              style="width: 25%;">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+                <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Menu</h5>
                 <div class="dropdown">
                     <a href="#"
                        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
@@ -45,7 +45,7 @@
                 <div class="position-sticky pt-3 sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary active" aria-current="page"
+                            <a class="nav-link px-2 text-body-custom active" aria-current="page"
                                th:href="@{/dashboard}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a class="nav-link px-2 text-body-secondary" th:href="@{/auth/users}">
+                            <a class="nav-link px-2 text-body-custom" th:href="@{/auth/users}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-users align-text-bottom"
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" th:href="@{/patients}">
+                            <a class="nav-link px-2 text-body-custom" th:href="@{/patients}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-users align-text-bottom"
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" th:href="@{/calendar}">
+                            <a class="nav-link px-2 text-body-custom" th:href="@{/calendar}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-calendar">
@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" th:href="@{/records}">
+                            <a class="nav-link px-2 text-body-custom" th:href="@{/records}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-file align-text-bottom"

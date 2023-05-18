@@ -1,15 +1,65 @@
-/*body {
-    background-color: #c1fff2;
-    opacity: 0.8;
-    background-image: radial-gradient(#444cf7 0.65px, #c1fff2 0.65px);
-    background-size: 13px 13px;
+body {
+    font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-main {
-    background-color: white;
-}*/
+.btn-bd-primary {
+    background-color: #0c8296;
+    border-color: #0c8296;
+    border-width: 2px;
+}
+
+.btn-bd-primary:hover {
+    background-color: #0c8296;
+    border-color: #F56E28;
+}
+
+.btn-primary {
+    background-color: #0c8296;
+    border-color: #0c8296;
+    border-width: 2px;
+}
+
+.btn-primary:hover {
+    background-color: #0c8296;
+    border-color: #F56E28;
+}
 
 .feather {
     width: 16px;
     height: 16px;
 }
+
+#logo {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar {
+    background-color: #6fa5bd;
+}
+
+.nav-item {
+    font-size: 20px; /* Adjust the desired font size */
+}
+
+.nav-link {
+    padding: 5px;
+}
+
+.nav-link:hover {
+    transition: outline-color 0.1s ease-in-out; /* Add transition property */
+    outline: 3px solid #F56E28;
+}
+
+.py-4 {
+    margin-bottom: 20px;
+}
+
+.text-body-custom {
+    color: #4C4E52;
+    font-size: 18px;
+    --bs-text-opacity: 1;
+}
+
