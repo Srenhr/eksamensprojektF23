@@ -31,7 +31,7 @@ public class UserController {
 
 
     // Used for testing purposes
-    @GetMapping("/users/1/appointments")
+    @GetMapping("/users/{employeeId}/appointments")
     public List<Appointment> employeeAppointments(@PathVariable long employeeId) {
         User employee = userRepository.findByUserId(employeeId);
         return appointmentRepository.findAppointmentsByUser(employee);
@@ -39,12 +39,12 @@ public class UserController {
 
     // Implement to fetch in calendar when using springboot login
     @GetMapping("/user/userappointments")
-    public List<Appointment> getSomeData(Authentication authentication) {
+    public List<Appointment> getUserAppointments(Authentication authentication) {
         String loggedInUsername = ((UserDetails) authentication.getPrincipal()).getUsername();
         // Use the logged-in user's ID to fetch data specific to that user
 
         Optional<User> loggedInUser = userRepository.findUserByUsername(loggedInUsername);
-
+        // Currently throws on error for user if user doesn't have appointments
         return appointmentRepository.findAppointmentsByUser(loggedInUser.get());
     }
 

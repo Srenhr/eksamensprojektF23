@@ -17,12 +17,12 @@
       var calendarEl = document.getElementById('calendar');
 
       // Fetch appointments and initialize FullCalendar
-      fetch('http://localhost:8080/employees/1/appointments')
+      fetch('http://localhost:8080/users/1/appointments')
         .then(response => response.json())
         .then(data => {
           // Format the appointment data for FullCalendar
           var events = data.map(appointment => ({
-            id: appointment.id,
+            id: appointment.appointmentId,
               title: appointment.user.firstName + ' ' + appointment.user.lastName,
             start: appointment.startTimeIso8601,
             end: appointment.endTimeIso8601,
@@ -52,9 +52,14 @@
             },
             // Add event click handler
             eventClick: function(info) {
-              // Handle event click logic here
-                // Potential redirect into the chosen appointment should be possible if client wants functionality.
-              console.log('Event clicked:', info.event);
+                // Get the clicked appointment ID
+                var appointmentId = info.event.id;
+
+                // Handle event click logic here
+                // For example, navigate to the selected appointment's details page
+                window.location.href = '/appointments/' + appointmentId;
+
+                console.log('Event clicked:', info.event);
             }
           });
 

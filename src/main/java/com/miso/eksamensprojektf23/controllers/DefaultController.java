@@ -52,6 +52,6 @@ public class DefaultController {
 
   @GetMapping("/test")
   public String test() {
-    return "calendarTest";
+    return "calendar";
   }
 }

@@ -1,10 +1,7 @@
 package com.miso.eksamensprojektf23.init;
 
 
-import com.miso.eksamensprojektf23.models.Patient;
-import com.miso.eksamensprojektf23.models.Privilege;
-import com.miso.eksamensprojektf23.models.Role;
-import com.miso.eksamensprojektf23.models.User;
+import com.miso.eksamensprojektf23.models.*;
 import com.miso.eksamensprojektf23.repositories.PatientRepository;
 import com.miso.eksamensprojektf23.repositories.PrivilegeRepository;
 import com.miso.eksamensprojektf23.repositories.RoleRepository;
@@ -16,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -78,6 +76,15 @@ public class SetupDataLoader implements
     patient.setReasonForRefferal("test");
     patient.setUsers(new HashSet<>(userRepository.findAll()));
     patientRepository.save(patient);
+    /*
+    Appointment appointment = new Appointment();
+    appointment.setAppointmentId(1L);
+    appointment.setUser(userRepository.findByUserId(1L));
+    Calendar cal = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+    cal.setTime(sdf.parse("Mon Mar 14 16:02:37 GMT 2011"));// all done
+    appointment.setStartTime(cal);
+     */
 
     alreadySetup = true;
   }
