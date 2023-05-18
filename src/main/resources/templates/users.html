@@ -18,6 +18,11 @@
         <h1 class="h2">Users</h1>
     </div>
 
+    <!-- Alert -->
+    <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
+        <p th:text="${message}"></p>
+    </div>
+
     <a class="btn btn-lg btn-primary btn-block" th:href="@{/auth/user/register}">Register New User</a>
 
     <label for="inpSearch"></label>

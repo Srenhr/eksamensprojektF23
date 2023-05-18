@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.Comparator;
@@ -55,12 +56,13 @@ public class RecordController {
   }
 
   @PostMapping("/record/entry/save")
-  public String saveEntry(Note note, Principal principal, HttpSession session) {
+  public String saveEntry(Note note, Principal principal, HttpSession session, RedirectAttributes redirectAttributes) {
     note.setUser(userService.getUserByUsername(principal.getName()));
     Patient patient = (Patient) session.getAttribute("patient");
     note.setPatient(patient);
     session.removeAttribute("patient");
     noteService.save(note);
+    redirectAttributes.addFlashAttribute("message", "The record has been successfully saved in the database");
     return "redirect:/records";
   }
 

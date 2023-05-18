@@ -35,6 +35,8 @@ public class Patient {
   @Column(unique = true)
   @NotBlank
   private String phoneNumber;
+/*  @NotBlank
+  private String SSNumber;*/ /*Not used*/
   @NotNull
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate birthdate;

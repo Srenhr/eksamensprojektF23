@@ -18,6 +18,11 @@
         <h1 class="h2">Patient Records</h1>
     </div>
 
+    <!-- Alert -->
+    <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
+        <p class="text-center" th:text="${message}"></p>
+    </div>
+
     <label for="inpSearch"></label>
     <input type="text" required name="search" onkeyup="searchFunction('tablePatients')" placeholder="Search"
            id="inpSearch">

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Comparator;
 import java.util.List;
@@ -45,8 +46,9 @@ public class PatientController {
   }
 
   @PostMapping("/patient/update")
-  public String updatePatient(Patient patient) {
+  public String updatePatient(Patient patient, RedirectAttributes redirectAttributes) {
     patientService.updatePatient(patient);
+    redirectAttributes.addFlashAttribute("message", "The patient has been successfully updated in the database");
     return "redirect:/patients";
   }
 
@@ -62,8 +64,14 @@ public class PatientController {
   }
 
   @PostMapping("/patient/save")
-  public String savePatient(Patient patient) {
-    patientService.savePatient(patient);
+  public String savePatient(Patient patient, RedirectAttributes redirectAttributes) {
+    try {
+      patientService.savePatient(patient);
+      redirectAttributes.addFlashAttribute("message", "The patient has been successfully saved in the database");
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("message", "A patient with the same social security number already exists in the database."); /*add SSN check*/
+      return "redirect:/patient/register";
+    }
     return "redirect:/patients";
   }
 

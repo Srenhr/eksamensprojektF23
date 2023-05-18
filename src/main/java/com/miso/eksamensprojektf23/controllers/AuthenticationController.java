@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Comparator;
 import java.util.List;
@@ -42,8 +43,9 @@ public class AuthenticationController {
   }
 
   @PostMapping("/user/update")
-  public String updateUser(User user) {
+  public String updateUser(User user, RedirectAttributes redirectAttributes) {
     userService.updateUser(user);
+    redirectAttributes.addFlashAttribute("message", "The user has been successfully updated in the database");
     return "redirect:/auth/users";
   }
 
@@ -59,8 +61,15 @@ public class AuthenticationController {
   }
 
   @PostMapping("/user/save")
-  public String saveUser(User user) {
-    userService.saveDefaultUser(user);
+  public String saveUser(User user, RedirectAttributes redirectAttributes) {
+
+    try {
+      userService.saveDefaultUser(user);
+      redirectAttributes.addFlashAttribute("message", "The user has been successfully saved in the database");
+    } catch (Exception e) {
+      redirectAttributes.addFlashAttribute("message", "A user with the same username already exists in the database.");
+      return "redirect:/auth/user/register";
+    }
     return "redirect:/auth/users";
   }
 

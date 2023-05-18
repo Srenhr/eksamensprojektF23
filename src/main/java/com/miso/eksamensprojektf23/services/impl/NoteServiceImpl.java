@@ -19,7 +19,7 @@ public class NoteServiceImpl implements NoteService {
   @Override
   public Note getNoteById(Long id) {
     return noteRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Note not found with id: " + id));
+        .orElseThrow(() -> new EntityNotFoundException("No record was found matching the id: " + id));
   }
 
   @Override

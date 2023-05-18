@@ -18,6 +18,11 @@
         <h1 class="h2">Register User</h1>
     </div>
 
+    <!-- Alert -->
+    <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
+        <p class="text-center" th:text="${message}"></p>
+    </div>
+
     <form th:action="@{/auth/user/save}" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{userId}"/>
