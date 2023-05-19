@@ -58,7 +58,8 @@ body {
 }
 
 .text-body-custom {
-    color: #4C4E52;
+    /*color: #6fa5bd;*/ /*God farve til dark mode*/
+    color: #4C4E52; /*God farve til light mode*/
     font-size: 18px;
     --bs-text-opacity: 1;
 }

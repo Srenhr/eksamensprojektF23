@@ -18,12 +18,23 @@
         <h1 class="h2">Patient Record</h1>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <h3 th:text="${note.patient.name}"></h3>
-        <h4 th:text="${note.appointmentType.displayname()}"></h4>
-        <h4 th:text="${note.user.name}"></h4>
-        <h4 th:text="${note.timestamp}"></h4>
-        <p class="text-justify" th:text="${note.textBody}"></p>
+    <div class="mx-auto" style="width: 40%">
+        <div class="form-group row">
+            <div class="col-4">
+                <p><b>Type:</b><br><span th:text="${note.appointmentType.displayname()}"></span></p>
+            </div>
+            <div class="col-4">
+                <p><b>Author:</b><br><span th:text="${note.user.name}"></span></p>
+            </div>
+            <div class="col-4">
+                <p><b>Timestamp:</b><br><span th:text="${note.timestamp}"></span></p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="text" class="col-4 col-form-label fw-bold">Text: </label>
+            <textarea th:text="${note.textBody}" class="text-justify" rows="4" id="text" disabled></textarea>
+        </div>
     </div>
 
 </main>
