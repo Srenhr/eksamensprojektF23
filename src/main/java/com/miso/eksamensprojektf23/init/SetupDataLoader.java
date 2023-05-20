@@ -1,14 +1,10 @@
 package com.miso.eksamensprojektf23.init;
 
 
-import com.miso.eksamensprojektf23.models.Patient;
-import com.miso.eksamensprojektf23.models.Privilege;
-import com.miso.eksamensprojektf23.models.Role;
-import com.miso.eksamensprojektf23.models.User;
-import com.miso.eksamensprojektf23.repositories.PatientRepository;
-import com.miso.eksamensprojektf23.repositories.PrivilegeRepository;
-import com.miso.eksamensprojektf23.repositories.RoleRepository;
-import com.miso.eksamensprojektf23.repositories.UserRepository;
+import com.miso.eksamensprojektf23.enums.AppointmentType;
+import com.miso.eksamensprojektf23.models.*;
+import com.miso.eksamensprojektf23.repositories.*;
+import com.miso.eksamensprojektf23.services.PatientService;
 import com.miso.eksamensprojektf23.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
@@ -30,6 +26,8 @@ public class SetupDataLoader implements
   private final RoleRepository roleRepository;
   private final PrivilegeRepository privilegeRepository;
   private final PatientRepository patientRepository;
+  private final PatientService patientService;
+  private final NoteRepository noteRepository;
   private final PasswordEncoder passwordEncoder;
   private boolean alreadySetup = false;
 
@@ -103,11 +101,18 @@ public class SetupDataLoader implements
     patient.setUsers(new HashSet<>(userRepository.findAll()));
     patientRepository.save(patient);
 
+    Note note = new Note();
+    note.setAppointmentType(AppointmentType.UNDERVISNING);
+    note.setPatient(patientService.getPatientById(1L));
+    note.setUser(userService.getUserById(1L));
+    note.setTextBody("HELLO WORLD!");
+    noteRepository.save(note);
+
     alreadySetup = true;
   }
 
   @Transactional
-  Privilege createPrivilegeIfNotFound(String name) {
+  public Privilege createPrivilegeIfNotFound(String name) {
 
     Optional<Privilege> optPrivilege = privilegeRepository.findPrivilegeByName(name);
     Privilege privilege = null;
@@ -120,7 +125,7 @@ public class SetupDataLoader implements
   }
 
   @Transactional
-  Role createRoleIfNotFound(
+  public Role createRoleIfNotFound(
       String name, String tag, Set<Privilege> privileges) {
 
     Optional<Role> optRole = roleRepository.findRoleByName(name);
