@@ -15,7 +15,7 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Patient Record</h1>
+        <h1 class="h2">Patient Record: <span th:text="${patientName}"></span></h1>
     </div>
 
     <label for="inpSearch"></label>
@@ -40,7 +40,7 @@
             <td th:text="${note.user.name}">Author</td>
             <td th:text="${note.timestamp}">Timestamp</td>
             <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/record/note/read/' + ${note.noteId}}">Read Note</a>
+                   th:href="@{'/record/note/read/' + ${note.noteId} +'&'+${patientName}}">Read Note</a>
         </tr>
         </tbody>
     </table>

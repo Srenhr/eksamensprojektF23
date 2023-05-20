@@ -37,12 +37,13 @@ public class RecordController {
     return "records";
   }
 
-  @GetMapping("/record/{patientId}")
-  public String getRecord(@PathVariable Long patientId, Model model) {
+  @GetMapping("/record/{patientId}&{patientName}")
+  public String getRecord(@PathVariable Long patientId, @PathVariable String patientName, Model model) {
     List<Note> record = noteService.getAllNotesByPatientId(patientId);
     // Sort the list by the id field
     record.sort(Comparator.comparingLong(Note::getNoteId));
     model.addAttribute("record", record);
+    model.addAttribute("patientName", patientName);
     return "record";
   }
 
@@ -66,10 +67,11 @@ public class RecordController {
     return "redirect:/records";
   }
 
-  @GetMapping("/record/note/read/{noteId}")
-  public String readEntry(@PathVariable Long noteId, Model model) {
+  @GetMapping("/record/note/read/{noteId}&{patientName}")
+  public String readEntry(@PathVariable Long noteId, @PathVariable String patientName, Model model) {
     Note note = noteService.getNoteById(noteId);
     model.addAttribute("note", note);
+    model.addAttribute("patientName", patientName);
     return "record_note";
   }
 }

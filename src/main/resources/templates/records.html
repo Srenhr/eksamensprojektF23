@@ -45,10 +45,11 @@
             <td th:text="${patient.lastName}">Last Name</td>
             <td th:text="${patient.reasonForRefferal}">Reason for Refferal</td>
             <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/record/' + ${patient.patientId}}">Access Journal</a>
+                   th:href="@{'/record/' + ${patient.patientId}+'&'+${patient.name}}">Access Journal</a>
                 <a
                         class="btn btn-md btn-primary btn-block"
-                        th:href="@{'/record/entry/' + ${patient.patientId}}">New Journal Entry</a></td>
+                        th:href="@{'/record/entry/' + ${patient.patientId}}">New Journal Entry</a>
+            </td>
         </tr>
         </tbody>
     </table>
