@@ -1,23 +1,25 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      data-bs-theme="light" class="h-100" lang="en">
 <head>
-    <div th:replace="~{fragments/header :: header-css}"></div>
     <title>401</title>
+    <div th:replace="~{fragments/header :: head-files}"></div>
+
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 
 <div th:replace="~{fragments/header :: header}"></div>
 
-<div class="container">
+<div th:replace="~{fragments/tdm :: tdm}"></div>
 
-    <div class="starter-template">
-        <h1>401 - Unauthorized</h1>
-        <span sec:authentication="name"></span>'s credentials provided are not valid.
+<!-- Main -->
+<main class="container-fluid mx-auto" style="width: 90%;">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">401 - Unauthorized</h1>
     </div>
-</div>
+    <p>Credentials provided are not valid.</p>
+</main>
 
-<!-- /.container -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>

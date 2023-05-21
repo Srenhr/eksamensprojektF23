@@ -2,6 +2,7 @@ package com.miso.eksamensprojektf23.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,32 +11,36 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "patients")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
+@Table(name = "patients")
 public class Patient {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "patient_id")
   private Long patientId;
-  @NotNull
+  @NotBlank
   private String firstName;
-  @NotNull
+  @NotBlank
   private String lastName;
+  @Transient
+  private String name;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String email;
   @Column(unique = true)
-  @NotNull
+  @NotBlank
   private String phoneNumber;
+/*  @NotBlank
+  private String SSNumber;*/ /*Not used*/
   @NotNull
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate birthdate;
-  @NotNull
+  @NotBlank
   private String reasonForRefferal;
 
   @ManyToMany(fetch = FetchType.EAGER)
@@ -56,18 +61,9 @@ public class Patient {
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
   @ToString.Exclude
-  private Set<JournalEntry> journalEntries;
+  private Set<Note> notes;
 
-  /*TODO: Kommer nok ikke til at blive brugt*/
-/*  public void addAppointment(Appointment appointment) {
-    appointments.add(appointment);
-    appointment.setPatient(this);
+  public String getName() {
+    return this.firstName + " " + this.lastName;
   }
-
-  public void removeAppointment(Appointment appointment) {
-    appointments.remove(appointment);
-    appointment.setPatient(null);
-  }*/
-
-
 }

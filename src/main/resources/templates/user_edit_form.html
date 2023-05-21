@@ -18,10 +18,24 @@
         <h1 class="h2">Edit User</h1>
     </div>
 
+    <!-- Alert -->
+    <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
+        <p class="text-center" th:text="${message}"></p>
+    </div>
+
     <form th:action="@{/auth/user/update}" th:object="${user}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{userId}"/>
         <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Enabled: </label>
+                <div class="col-8">
+                    <input type="checkbox" th:field="*{enabled}"
+                           th:text="Enabled"
+                           class="m-2"/>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label class="col-4 col-form-label">Username/E-mail: </label>
                 <div class="col-8">
@@ -63,8 +77,8 @@
                 <label class="col-4 col-form-label">Roles: </label>
                 <div class="col-8">
                     <input type="checkbox" checked disabled
-                           th:text="User" class="m-2"/>
-                    <th:block th:each="role: ${listRoles}">
+                           th:text="User" class="m-2"/> <!--Dummy-->
+                    <th:block th:each="role: ${roles}">
                         <input type="checkbox" th:field="*{roles}"
                                th:text="${role.tag}" th:unless="${role.tag == 'User'}" th:value="${role.roleId}"
                                class="m-2"/>

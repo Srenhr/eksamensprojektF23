@@ -18,6 +18,11 @@
         <h1 class="h2">Register Patient</h1>
     </div>
 
+    <!-- Alert -->
+    <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
+        <p class="text-center" th:text="${message}"></p>
+    </div>
+
     <form th:action="@{/patient/save}" th:object="${patient}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{patientId}"/>
@@ -68,7 +73,7 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Associated Healthcare Worker(s): </label>
                 <div class="col-8">
-                    <th:block th:each="user: ${listUsers}">
+                    <th:block th:each="user: ${users}">
                         <input type="checkbox" th:field="*{users}"
                                th:text="${user.name}" th:value="${user.userId}"
                                class="m-2"/>

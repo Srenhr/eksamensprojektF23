@@ -24,14 +24,16 @@ public class SecurityConfiguration {
         .csrf()
         .disable()
         .authorizeHttpRequests((authz) -> authz
-            .requestMatchers("/js/**", "/css/**", "/img/**", "/scss/**", "/", "/home", "/about", "/error/**", "/**", "/public/**")
+            .requestMatchers("/js/**", "/css/**", "/img/**", "/", "/home", "/about", "/error/**", /*"/**",*/ "/public/**")
             .permitAll()
             .requestMatchers("/auth/**").hasRole("ADMIN")
             .anyRequest()
             .authenticated())
         .formLogin()
         .loginPage("/login")
+/*
         .failureUrl("/failure")
+*/
         .permitAll()
         .and()
         .logout()

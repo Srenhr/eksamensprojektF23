@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="light" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="~{fragments/header :: head-files}"></div>
+    <title>Add Entry</title>
+</head>
+<body class="d-flex flex-column h-100">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+<div th:replace="~{fragments/tdm :: tdm}"></div>
+
+<!-- Main -->
+<main class="container-fluid mx-auto" style="width: 90%;">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Add Entry</h1>
+    </div>
+
+    <form th:action="@{/record/entry/save}" th:object="${note}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{noteId}"/>
+        <div class="m-3">
+            <div class="form-group row">
+                <select th:field="*{appointmentType}" required>
+                    <option th:each="type : ${T(com.miso.eksamensprojektf23.enums.AppointmentType).values()}"
+                            th:value="${type}" th:text="${type.displayname()}"></option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label fw-bold">Text: </label>
+                <textarea class="form-control" th:field="*{textBody}" rows="4" required></textarea>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

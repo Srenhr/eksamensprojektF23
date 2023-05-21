@@ -8,13 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @Entity
-@Table(name = "appointments")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString /*Remember to add ToString.Exclude to lazy fields, https://www.jpa-buddy.com/blog/lombok-and-jpa-what-may-go-wrong/*/
+@Table(name = "appointments")
 public class Appointment {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)

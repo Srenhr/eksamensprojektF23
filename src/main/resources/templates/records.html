@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Users</title>
+    <title>Patient Records</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -15,49 +15,41 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Users</h1>
+        <h1 class="h2">Patient Records</h1>
     </div>
 
     <!-- Alert -->
     <div class="alert alert-primary mx-auto" role="alert" th:if="${message!=null}" style="width: 50%">
-        <p th:text="${message}"></p>
+        <p class="text-center" th:text="${message}"></p>
     </div>
 
-    <a class="btn btn-lg btn-primary btn-block" th:href="@{/auth/user/register}">Register New User</a>
-
     <label for="inpSearch"></label>
-    <input type="text" required class="form-control" name="search" onkeyup="searchFunction('tableUsers')"
+    <input type="text" required class="form-control" name="search" onkeyup="searchFunction('tableRecords')"
            placeholder="Search"
            id="inpSearch">
 
-    <table class="table table-striped table-bordered" id="tableUsers">
+    <table class="table table-striped table-bordered" id="tableRecords">
         <thead class="thead-dark">
         <tr>
-            <th>User ID</th>
-            <th>E-mail</th>
+            <th>Patient ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Enabled</th>
-            <th>Roles</th>
+            <th>Reason for Refferal</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user, i: ${users}">
-            <td th:text="${user.userId}">User ID</td>
-            <td th:text="${user.username}">Username/E-mail</td>
-            <td th:text="${user.firstName}">First Name</td>
-            <td th:text="${user.lastName}">Last Name</td>
-            <td th:text="${user.phoneNumber}">Phone Number</td>
-            <td th:text="${user.enabled}">Enabled</td>
-            <td>
-                <th:block th:each="role : ${user.roles}">
-                    <p th:text="${role.tag}">Roles</p>
-                </th:block>
-            </td>
+        <tr th:each="patient: ${patients}">
+            <td th:text="${patient.patientId}">Patient ID</td>
+            <td th:text="${patient.firstName}">First Name</td>
+            <td th:text="${patient.lastName}">Last Name</td>
+            <td th:text="${patient.reasonForRefferal}">Reason for Refferal</td>
             <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/auth/user/edit/' + ${user.userId}}">Edit</a></td>
+                   th:href="@{'/record/' + ${patient.patientId}+'&'+${patient.name}}">Access Journal</a>
+                <a
+                        class="btn btn-md btn-primary btn-block"
+                        th:href="@{'/record/entry/' + ${patient.patientId}}">New Journal Entry</a>
+            </td>
         </tr>
         </tbody>
     </table>

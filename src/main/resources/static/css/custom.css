@@ -1,15 +1,102 @@
-/*body {
-    background-color: #c1fff2;
-    opacity: 0.8;
-    background-image: radial-gradient(#444cf7 0.65px, #c1fff2 0.65px);
-    background-size: 13px 13px;
+body {
+    font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-main {
-    background-color: white;
-}*/
+[data-bs-theme=light] body {
+    background-color: #FAF9F6;
+}
+
+[data-bs-theme=auto] body {
+    background-color: #FAF9F6;
+}
+
+.btn-bd-primary {
+    background-color: #0c8296;
+    border-color: #0c8296;
+    border-width: 2px;
+}
+
+.btn-bd-primary:hover {
+    background-color: #0c8296;
+    border-color: #F56E28;
+}
+
+.btn-primary {
+    background-color: #0c8296;
+    border-color: #0c8296;
+    border-width: 2px;
+}
+
+.btn-primary:hover {
+    background-color: #0c8296;
+    border-color: #F56E28;
+}
+
+.custom-nav-text {
+    color: black;
+}
+
+.custom-nav-text:hover {
+    color: black;
+}
+
+.custom-text-body {
+    font-size: 18px;
+    --bs-text-opacity: 1;
+}
+
+[data-bs-theme=light] .custom-text-body {
+    color: #0066b2
+}
+
+[data-bs-theme=auto] .custom-text-body {
+    color: #0066b2
+}
 
 .feather {
     width: 16px;
     height: 16px;
 }
+
+[data-bs-theme=dark] #footer-name {
+    color: #adb5bd;;
+}
+
+#inpSearch {
+    display: inline-block;
+    width: 15%;
+}
+
+#logo {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar {
+    background-color: #6fa5bd;
+}
+
+[data-bs-theme=dark] .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-item {
+    font-size: 20px; /* Adjust the desired font size */
+}
+
+.nav-link {
+    padding: 5px;
+}
+
+.nav-link:hover {
+    transition: outline-color 0.1s ease-in-out; /* Add transition property */
+    outline: 3px solid #F56E28;
+}
+
+.py-4 {
+    margin-bottom: 20px;
+}
+
+
