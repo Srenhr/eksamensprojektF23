@@ -73,14 +73,12 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Associated Healthcare Worker(s): </label>
                 <div class="col-8">
-                    <th:block th:each="user: ${users}">
-                        <input type="checkbox" th:field="*{users}"
-                               th:text="${user.name}" th:value="${user.userId}"
-                               class="m-2"/>
-                    </th:block>
+                    <select class="form-select form-select-lg mb-3" th:field="*{users}" multiple>
+                        <option th:each="user: ${users}" th:value="${user.userId}" th:text="${user.name}">
+                        </option>
+                    </select>
                 </div>
             </div>
-
 
             <div>
                 <button type="submit" class="btn btn-primary">Update</button>
