@@ -19,7 +19,7 @@ public class PatientServiceImpl implements PatientService {
   @Override
   public Patient getPatientById(Long id) {
     return patientRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("No patient was found matching the id: " + id));
+        .orElseThrow(() -> new EntityNotFoundException("Der blev ikke fundet nogen borger, der matcher ID'et: " + id));
   }
 
   @Override
@@ -30,7 +30,7 @@ public class PatientServiceImpl implements PatientService {
   @Override
   public void updatePatient(Patient patientModel) {
     Patient newPatient = patientRepository.findById(patientModel.getPatientId())
-        .orElseThrow(() -> new EntityNotFoundException("No patient was found matching the id: " + patientModel.getPatientId()));
+        .orElseThrow(() -> new EntityNotFoundException("Der blev ikke fundet nogen borger, der matcher ID'et: " + patientModel.getPatientId()));
     newPatient.setFirstName(patientModel.getFirstName());
     newPatient.setLastName(patientModel.getLastName());
     newPatient.setEmail(patientModel.getEmail());

@@ -40,12 +40,12 @@
                 <div class="nav-item" id="login">
                     <div sec:authorize="isAnonymous()">
                         <form th:action="@{/dashboard}" method="get">
-                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="SIGN IN"/>
+                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG IND"/>
                         </form>
                     </div>
                     <div sec:authorize="isAuthenticated()">
                         <form th:action="@{/logout}" method="post">
-                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="SIGN OUT"/>
+                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG UD"/>
                         </form>
                     </div>
                 </div>

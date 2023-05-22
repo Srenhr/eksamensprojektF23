@@ -48,7 +48,7 @@ public class PatientController {
   @PostMapping("/patient/update")
   public String updatePatient(Patient patient, RedirectAttributes redirectAttributes) {
     patientService.updatePatient(patient);
-    redirectAttributes.addFlashAttribute("message", "The patient has been successfully updated in the database");
+    redirectAttributes.addFlashAttribute("message", "Borgeren er blevet opdateret i databasen.");
     return "redirect:/patients";
   }
 
@@ -67,9 +67,9 @@ public class PatientController {
   public String savePatient(Patient patient, RedirectAttributes redirectAttributes) {
     try {
       patientService.savePatient(patient);
-      redirectAttributes.addFlashAttribute("message", "The patient has been successfully saved in the database");
+      redirectAttributes.addFlashAttribute("message", "Borgeren er blevet gemt i databasen.");
     } catch (Exception e) {
-      redirectAttributes.addFlashAttribute("message", "A patient with the same social security number already exists in the database."); /*add SSN check*/
+      redirectAttributes.addFlashAttribute("message", "En borger med samme CPR-nummer eller Telefonnummer findes allerede i databasen.");
       return "redirect:/patient/register";
     }
     return "redirect:/patients";

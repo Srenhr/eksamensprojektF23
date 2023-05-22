@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Add Entry</title>
+    <title>Opret Notat - Blindeinstituttet</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -30,12 +30,12 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label fw-bold">Text: </label>
+                <label class="col-4 col-form-label fw-bold">Tekst: </label>
                 <textarea class="form-control" th:field="*{textBody}" rows="4" required></textarea>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Gem</button>
             </div>
         </div>
     </form>

@@ -63,7 +63,7 @@ public class RecordController {
     note.setPatient(patient);
     session.removeAttribute("patient");
     noteService.save(note);
-    redirectAttributes.addFlashAttribute("message", "The record has been successfully saved in the database");
+    redirectAttributes.addFlashAttribute("message", "Notatet er blevet gemt i databasen.");
     return "redirect:/records";
   }
 

@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUserById(Long id) {
     return userRepository.findById(id)
-        .orElseThrow(() -> new UsernameNotFoundException("No user was found matching the id: " + id));
+        .orElseThrow(() -> new UsernameNotFoundException("Der blev ikke fundet nogen bruger, der matcher ID'et: " + id));
   }
 
   @Override
   public User getUserByUsername(String username) {
     return userRepository.findUserByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("No user was found matching the username: " + username));
+        .orElseThrow(() -> new UsernameNotFoundException("Der blev ikke fundet nogen bruger, der matcher brugernavnet: " + username));
   }
 
   @Override
@@ -45,21 +45,21 @@ public class UserServiceImpl implements UserService {
   @Override
   public void updateUser(User request) {
     User user = userRepository.findById(request.getUserId())
-        .orElseThrow(() -> new UsernameNotFoundException("No user was found matching the id: " + request.getUserId()));
+        .orElseThrow(() -> new UsernameNotFoundException("Der blev ikke fundet nogen bruger, der matcher ID'et: " + request.getUserId()));
     user.setUsername(request.getUsername());
     user.setPassword(passwordEncoder.encode(request.getPassword()));
     user.setPhoneNumber(request.getPhoneNumber());
     user.setEnabled(request.isEnabled());
     user.setRoles(request.getRoles());
     Role roleUser = roleRepository.findRoleByName("ROLE_USER")
-        .orElseThrow(() -> new EntityNotFoundException("No role was found matching the name: ROLE_USER"));
+        .orElseThrow(() -> new EntityNotFoundException("Der blev ikke fundet nogen role, der matcher navnet: ROLE_USER"));
     user.addRole(roleUser);
     userRepository.save(user);
   }
 
   public void saveDefaultUser(User user) {
     Role roleUser = roleRepository.findRoleByName("ROLE_USER")
-        .orElseThrow(() -> new EntityNotFoundException("No role was found matching the name: ROLE_USER"));
+        .orElseThrow(() -> new EntityNotFoundException("Der blev ikke fundet nogen role, der matcher navnet: ROLE_USER"));
     user.addRole(roleUser);
     user.setEnabled(true);
     userRepository.save(user);
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
   public List<Patient> getPatientsByUsername(String username) {
     User user = userRepository.findUserByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("No user was found matching the username: " + username));
+        .orElseThrow(() -> new UsernameNotFoundException("Der blev ikke fundet nogen bruger, der matcher brugernavnet: " + username));
     if (user != null) {
       Set<Patient> patients = user.getPatients();
       // Convert Set to List

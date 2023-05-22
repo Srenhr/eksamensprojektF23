@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Patient Record</title>
+    <title>Journal - Blindeinstituttet</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -15,32 +15,32 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Patient Record: <span th:text="${patientName}"></span></h1>
+        <h1 class="h2">Journal tilhørende: <span th:text="${patientName}"></span></h1>
     </div>
 
     <label for="inpSearch"></label>
     <input type="text" required class="form-control" name="search" onkeyup="searchFunction('tableRecord')"
-           placeholder="Search"
+           placeholder="Søg"
            id="inpSearch">
 
     <table class="table table-striped table-bordered" id="tableRecord">
         <thead class="thead-dark">
         <tr>
-            <th>Entry ID</th>
+            <th>Notat ID</th>
             <th>Type</th>
-            <th>Author</th>
-            <th>Timestamp</th>
+            <th>Medarbejder</th>
+            <th>Tidsstempel</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="note: ${record}">
-            <td th:text="${note.noteId}">Entry ID</td>
+            <td th:text="${note.noteId}">Notat ID</td>
             <td th:text="${note.appointmentType.displayname()}">Type</td>
-            <td th:text="${note.user.name}">Author</td>
-            <td th:text="${note.timestamp}">Timestamp</td>
+            <td th:text="${note.user.name}">Medarbejder</td>
+            <td th:text="${note.timestamp}">Tidsstempel</td>
             <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/record/note/read/' + ${note.noteId} +'&'+${patientName}}">Read Note</a>
+                   th:href="@{'/record/note/read/' + ${note.noteId} +'&'+${patientName}}">Læs notat</a>
         </tr>
         </tbody>
     </table>
