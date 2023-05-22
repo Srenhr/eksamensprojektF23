@@ -31,7 +31,7 @@
                 <label class="col-4 col-form-label">Aktiveret: </label>
                 <div class="col-8">
                     <input type="checkbox" th:field="*{enabled}"
-                           th:text="Aktiveret"
+                           th:text="Aktiveret" checked
                            class="m-2"/>
                 </div>
             </div>
@@ -77,10 +77,10 @@
                 <label class="col-4 col-form-label">Roler: </label>
                 <div class="col-8">
                     <input type="checkbox" checked disabled
-                           th:text="User" class="m-2"/> <!--Dummy-->
+                           th:text="Bruger" class="m-2"/> <!--Dummy-->
                     <th:block th:each="role: ${roles}">
                         <input type="checkbox" th:field="*{roles}"
-                               th:text="${role.tag}" th:unless="${role.tag == 'User'}" th:value="${role.roleId}"
+                               th:text="${role.tag}" th:unless="${role.tag == 'Bruger'}" th:value="${role.roleId}"
                                class="m-2"/>
                     </th:block>
                 </div>
