@@ -23,27 +23,29 @@
            placeholder="Søg"
            id="inpSearch">
 
-    <table class="table table-striped table-bordered" id="tableRecord">
-        <thead class="thead-dark">
-        <tr>
-            <th>Notat ID</th>
-            <th>Type</th>
-            <th>Medarbejder</th>
-            <th>Tidsstempel</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="note: ${record}">
-            <td th:text="${note.noteId}">Notat ID</td>
-            <td th:text="${note.appointmentType.displayname()}">Type</td>
-            <td th:text="${note.user.name}">Medarbejder</td>
-            <td th:text="${note.timestamp}">Tidsstempel</td>
-            <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/record/note/read/' + ${note.noteId} +'&'+${patientName}}">Læs notat</a>
-        </tr>
-        </tbody>
-    </table>
+    <div class="shadow-lg p-3 mb-5 rounded">
+        <table class="table table-striped table-bordered" id="tableRecord">
+            <thead class="thead-dark">
+            <tr>
+                <th>Notat ID</th>
+                <th>Type</th>
+                <th>Medarbejder</th>
+                <th>Tidsstempel</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="note: ${record}">
+                <td th:text="${note.noteId}">Notat ID</td>
+                <td th:text="${note.appointmentType.displayname()}">Type</td>
+                <td th:text="${note.user.name}">Medarbejder</td>
+                <td th:text="${note.timestamp}">Tidsstempel</td>
+                <td><a class="btn btn-md btn-primary btn-block"
+                       th:href="@{'/record/note/read/' + ${note.noteId} +'&'+${patientName}}">Læs notat</a>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

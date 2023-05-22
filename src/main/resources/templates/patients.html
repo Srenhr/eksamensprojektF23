@@ -30,39 +30,41 @@
            placeholder="Søg"
            id="inpSearch">
 
-    <table class="table table-striped table-bordered" id="tablePatients">
-        <thead class="thead-dark">
-        <tr>
-            <th>Borger ID</th>
-            <th>Navn</th>
-            <th>CPR</th>
-            <th>E-mail</th>
-            <th>Telefonnummer</th>
-            <th>Fødselsdato</th>
-            <th>Henvisningsårsag</th>
-            <th>Tilknyttede Medarbejder(e)</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="patient: ${patients}">
-            <td th:text="${patient.patientId}">Borger ID</td>
-            <td th:text="${patient.name}">Navn</td>
-            <td th:text="${patient.sSNumber}">CPR</td>
-            <td th:text="${patient.email}">E-mail</td>
-            <td th:text="${patient.phoneNumber}">Telefonnummer</td>
-            <td th:text="${patient.birthdate}">Fødselsdato</td>
-            <td th:text="${patient.reasonForRefferal}">Henvisningsårsag</td>
-            <td>
-                <th:block th:each="user : ${patient.users}">
-                    <p th:text="${user.name}">Tilknyttede Medarbejder(e)</p>
-                </th:block>
-            </td>
-            <td><a class="btn btn-md btn-primary btn-block"
-                   th:href="@{'/patient/edit/' + ${patient.patientId}}">Opdater</a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="shadow-lg p-3 mb-5 rounded">
+        <table class="table table-striped table-bordered" id="tablePatients">
+            <thead class="thead-dark">
+            <tr>
+                <th>Borger ID</th>
+                <th>Navn</th>
+                <th>CPR</th>
+                <th>E-mail</th>
+                <th>Telefonnummer</th>
+                <th>Fødselsdato</th>
+                <th>Henvisningsårsag</th>
+                <th>Tilknyttede Medarbejder(e)</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient: ${patients}">
+                <td th:text="${patient.patientId}">Borger ID</td>
+                <td th:text="${patient.name}">Navn</td>
+                <td th:text="${patient.sSNumber}">CPR</td>
+                <td th:text="${patient.email}">E-mail</td>
+                <td th:text="${patient.phoneNumber}">Telefonnummer</td>
+                <td th:text="${patient.birthdate}">Fødselsdato</td>
+                <td th:text="${patient.reasonForRefferal}">Henvisningsårsag</td>
+                <td>
+                    <th:block th:each="user : ${patient.users}">
+                        <p th:text="${user.name}">Tilknyttede Medarbejder(e)</p>
+                    </th:block>
+                </td>
+                <td><a class="btn btn-md btn-primary btn-block"
+                       th:href="@{'/patient/edit/' + ${patient.patientId}}">Opdater</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

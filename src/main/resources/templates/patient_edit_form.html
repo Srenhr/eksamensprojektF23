@@ -24,7 +24,7 @@
     </div>
 
     <form th:action="@{/patient/update}" th:object="${patient}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" class="shadow-lg p-3 mb-5 rounded" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{patientId}"/>
         <div class="m-3">
             <div class="form-group row">
@@ -81,7 +81,7 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Tilknyttede Medarbejder(e): </label>
                 <div class="col-8">
-                    <select class="form-select form-select-lg mb-3" th:field="*{users}" multiple>
+                    <select class="form-select form-select-lg mb-3 fs-6" th:field="*{users}" multiple>
                         <option th:each="user: ${users}" th:value="${user.userId}" th:text="${user.name}">
                         </option>
                     </select>

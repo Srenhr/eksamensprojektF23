@@ -19,7 +19,7 @@
     </div>
 
     <form th:action="@{/record/entry/save}" th:object="${note}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" class="shadow-lg p-3 mb-5 rounded" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{noteId}"/>
         <div class="m-3">
             <div class="form-group row">
