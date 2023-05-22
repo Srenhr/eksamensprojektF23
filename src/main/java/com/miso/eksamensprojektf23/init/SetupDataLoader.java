@@ -76,7 +76,7 @@ public class SetupDataLoader implements
     user.setLastName("usersen");
     user.setPassword(passwordEncoder.encode("test1234"));
     user.setUsername("user2@test.com");
-    user.setPhoneNumber("+4587654321");
+    user.setPhoneNumber("+4587254321");
     user.setEnabled(false);
     user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
     userRepository.save(user);
