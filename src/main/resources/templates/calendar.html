@@ -18,7 +18,7 @@
                     // Format the appointment data for FullCalendar
                     var events = data.map(appointment => ({
                         id: appointment.id,
-                        title: appointment.user.firstName + ' ' + appointment.user.lastName,
+                        title: appointment.title,
                         start: appointment.startTimeIso8601,
                         end: appointment.endTimeIso8601,
                         // Add any additional properties or formatting as needed
