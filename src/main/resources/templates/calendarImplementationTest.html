@@ -9,18 +9,19 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
 
-      // Fetch appointments and initialize FullCalendar
-      fetch('http://localhost:8080/users/1/appointments')
-              .then(response => response.json())
-              .then(data => {
-                // Format the appointment data for FullCalendar
-                var events = data.map(appointment => ({
-                  id: appointment.appointmentId,
-                  title: appointment.user.firstName + ' ' + appointment.user.lastName,
-                  start: appointment.startTimeIso8601,
-                  end: appointment.endTimeIso8601,
-                  // Add any additional properties or formatting as needed
-                }));
+      // Fetch the user's ID from the server
+
+              fetch('http://localhost:8080/user/appointments')
+                      .then(response => response.json())
+                      .then(data => {
+                        // Format the appointment data for FullCalendar
+                        var events = data.map(appointment => ({
+                          id: appointment.id,
+                          title: appointment.user.firstName + ' ' + appointment.user.lastName,
+                          start: appointment.startTimeIso8601,
+                          end: appointment.endTimeIso8601,
+                          // Add any additional properties or formatting as needed
+                        }));
 
                 function formatTime(time) {
                   var date = new Date(time);

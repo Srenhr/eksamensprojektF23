@@ -52,6 +52,6 @@ public class DefaultController {
 
   @GetMapping("/test")
   public String test() {
-    return "calendarImplementationTest";
+    return "appointment_register_form";
   }
 }

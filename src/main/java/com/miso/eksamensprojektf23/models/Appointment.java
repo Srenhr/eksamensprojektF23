@@ -29,6 +29,9 @@ public class Appointment {
   @JoinColumn(name = "patient_id")
   private Patient patient;
 
+  @NotNull
+  private String title;
+
   @NotNull(message = "Appointment start time is required")
   @Temporal(TemporalType.TIMESTAMP)
   private Calendar startTime;
