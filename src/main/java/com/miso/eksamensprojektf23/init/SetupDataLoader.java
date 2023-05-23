@@ -49,7 +49,7 @@ public class SetupDataLoader implements
         readPrivilege, writePrivilege, updatePrivilege, deletePrivilege));
     Set<Privilege> userPrivileges = new HashSet<>(Arrays.asList(readPrivilege, writePrivilege, updatePrivilege));
     Role roleAdmin = createRoleIfNotFound("ROLE_ADMIN", "Admin", adminPrivileges);
-    Role roleUser = createRoleIfNotFound("ROLE_USER", "User", userPrivileges);
+    Role roleUser = createRoleIfNotFound("ROLE_USER", "Bruger", userPrivileges);
 
     User user = new User();
     user.setFirstName("admin");
@@ -76,7 +76,7 @@ public class SetupDataLoader implements
     user.setLastName("usersen");
     user.setPassword(passwordEncoder.encode("test1234"));
     user.setUsername("user2@test.com");
-    user.setPhoneNumber("+4587254321");
+    user.setPhoneNumber("+4574938754");
     user.setEnabled(false);
     user.setRoles(new HashSet<>(Collections.singletonList(roleUser)));
     userRepository.save(user);
@@ -86,7 +86,8 @@ public class SetupDataLoader implements
     patient.setLastName("patientsen");
     patient.setEmail("patient1@test.com");
     patient.setPhoneNumber("+4512546576");
-    patient.setBirthdate(LocalDate.parse("1111-11-11"));
+    patient.setSSNumber("1234-210292");
+    patient.setBirthdate(LocalDate.parse("1992-02-21"));
     patient.setReasonForRefferal("blind");
     patient.setUsers(new HashSet<>(Collections.singletonList(userService.getUserById(1L))));
     patientRepository.save(patient);
@@ -96,7 +97,8 @@ public class SetupDataLoader implements
     patient.setLastName("patientsen");
     patient.setEmail("patient2@test.com");
     patient.setPhoneNumber("+4523456789");
-    patient.setBirthdate(LocalDate.parse("1111-11-11"));
+    patient.setSSNumber("4321-210491");
+    patient.setBirthdate(LocalDate.parse("1991-04-21"));
     patient.setReasonForRefferal("blind");
     patient.setUsers(new HashSet<>(Collections.singletonList(userService.getUserById(2L))));
     patientRepository.save(patient);
@@ -106,7 +108,8 @@ public class SetupDataLoader implements
     patient.setLastName("patientsen");
     patient.setEmail("patient3@test.com");
     patient.setPhoneNumber("+4586313456");
-    patient.setBirthdate(LocalDate.parse("1111-11-11"));
+    patient.setSSNumber("5678-130722");
+    patient.setBirthdate(LocalDate.parse("2022-07-13"));
     patient.setReasonForRefferal("blind");
     patient.setUsers(new HashSet<>(userRepository.findAll()));
     patientRepository.save(patient);

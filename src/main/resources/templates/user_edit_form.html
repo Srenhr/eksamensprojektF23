@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Edit User</title>
+    <title>Opdater Bruger - Blindeinstituttet</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -15,7 +15,7 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit User</h1>
+        <h1 class="h2">Opdater Bruger</h1>
     </div>
 
     <!-- Alert -->
@@ -24,27 +24,27 @@
     </div>
 
     <form th:action="@{/auth/user/update}" th:object="${user}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" class="shadow-lg p-3 mb-5 rounded" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{userId}"/>
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-4 col-form-label">Enabled: </label>
+                <label class="col-4 col-form-label">Aktiveret: </label>
                 <div class="col-8">
                     <input type="checkbox" th:field="*{enabled}"
-                           th:text="Enabled"
+                           th:text="Aktiveret" checked
                            class="m-2"/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Username/E-mail: </label>
+                <label class="col-4 col-form-label">Brugernavn/E-mail: </label>
                 <div class="col-8">
                     <input type="email" th:field="*{username}" class="form-control" required/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
+                <label class="col-4 col-form-label">Kodeord: </label>
                 <div class="col-8">
                     <input type="password" th:field="*{password}" class="form-control"
                            required minlength="6" maxlength="10"/>
@@ -52,21 +52,21 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">First Name: </label>
+                <label class="col-4 col-form-label">Fornavn: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{firstName}" class="form-control" required/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Last Name: </label>
+                <label class="col-4 col-form-label">Efternavn: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{lastName}" class="form-control" required/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Phone Number: </label>
+                <label class="col-4 col-form-label">Telefonnummer: </label>
                 <div class="col-8">
                     <input type="tel" th:field="*{phoneNumber}" class="form-control"
                            required minlength="8" maxlength="20"/>
@@ -74,20 +74,20 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Roles: </label>
+                <label class="col-4 col-form-label">Roler: </label>
                 <div class="col-8">
                     <input type="checkbox" checked disabled
-                           th:text="User" class="m-2"/> <!--Dummy-->
+                           th:text="Bruger" class="m-2"/> <!--Dummy-->
                     <th:block th:each="role: ${roles}">
                         <input type="checkbox" th:field="*{roles}"
-                               th:text="${role.tag}" th:unless="${role.tag == 'User'}" th:value="${role.roleId}"
+                               th:text="${role.tag}" th:unless="${role.tag == 'Bruger'}" th:value="${role.roleId}"
                                class="m-2"/>
                     </th:block>
                 </div>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Opdater</button>
             </div>
         </div>
     </form>

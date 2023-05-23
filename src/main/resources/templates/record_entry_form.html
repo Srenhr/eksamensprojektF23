@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Add Entry</title>
+    <title>Opret Notat - Blindeinstituttet</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -19,7 +19,7 @@
     </div>
 
     <form th:action="@{/record/entry/save}" th:object="${note}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" class="shadow-lg p-3 mb-5 rounded" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{noteId}"/>
         <div class="m-3">
             <div class="form-group row">
@@ -30,12 +30,12 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label fw-bold">Text: </label>
+                <label class="col-4 col-form-label fw-bold">Tekst: </label>
                 <textarea class="form-control" th:field="*{textBody}" rows="4" required></textarea>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Gem</button>
             </div>
         </div>
     </form>

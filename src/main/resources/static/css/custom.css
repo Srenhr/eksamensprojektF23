@@ -32,6 +32,10 @@ body {
     border-color: #F56E28;
 }
 
+#calendar {
+    padding: 15px;
+}
+
 .custom-nav-text {
     color: black;
 }

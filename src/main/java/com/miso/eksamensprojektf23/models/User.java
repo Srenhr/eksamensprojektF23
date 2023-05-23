@@ -3,6 +3,7 @@ package com.miso.eksamensprojektf23.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,6 +41,7 @@ public class User implements UserDetails {
   @Column(unique = true)
   @NotBlank
   private String phoneNumber;
+  @NotNull
   private boolean enabled;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(

@@ -45,7 +45,7 @@ public class AuthenticationController {
   @PostMapping("/user/update")
   public String updateUser(User user, RedirectAttributes redirectAttributes) {
     userService.updateUser(user);
-    redirectAttributes.addFlashAttribute("message", "The user has been successfully updated in the database");
+    redirectAttributes.addFlashAttribute("message", "Brugeren er blevet opdateret i databasen.");
     return "redirect:/auth/users";
   }
 
@@ -65,9 +65,9 @@ public class AuthenticationController {
 
     try {
       userService.saveDefaultUser(user);
-      redirectAttributes.addFlashAttribute("message", "The user has been successfully saved in the database");
+      redirectAttributes.addFlashAttribute("message", "Brugeren er blevet gemt i databasen.");
     } catch (Exception e) {
-      redirectAttributes.addFlashAttribute("message", "A user with the same username already exists in the database.");
+      redirectAttributes.addFlashAttribute("message", "En bruger med samme brugernavn eller telefonnummer findes allerede i databasen.");
       return "redirect:/auth/user/register";
     }
     return "redirect:/auth/users";

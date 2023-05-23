@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:replace="~{fragments/header :: head-files}"></div>
-    <title>Register Patient</title>
+    <title>Registrer Borger - Blindeinstituttet</title>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -15,7 +15,7 @@
 <!-- Main -->
 <main class="container-fluid mx-auto" style="width: 90%;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Register Patient</h1>
+        <h1 class="h2">Registrer Borger</h1>
     </div>
 
     <!-- Alert -->
@@ -24,20 +24,35 @@
     </div>
 
     <form th:action="@{/patient/save}" th:object="${patient}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" class="shadow-lg p-3 mb-5 rounded" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{patientId}"/>
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-4 col-form-label">First Name: </label>
+                <label class="col-4 col-form-label">Fornavn: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{firstName}" class="form-control" required/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Last Name: </label>
+                <label class="col-4 col-form-label">Efternavn: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{lastName}" class="form-control" required/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">CPR: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{sSNumber}" class="form-control" maxlength="11"
+                           pattern="\d{4}-\d{6}" required/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Fødselsdato: </label>
+                <div class="col-8">
+                    <input type="date" th:field="*{birthdate}" class="form-control" required/>
                 </div>
             </div>
 
@@ -49,7 +64,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Phone Number: </label>
+                <label class="col-4 col-form-label">Telefonnummer: </label>
                 <div class="col-8">
                     <input type="tel" th:field="*{phoneNumber}" class="form-control"
                            required minlength="8" maxlength="20"/>
@@ -57,23 +72,16 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Birthdate: </label>
-                <div class="col-8">
-                    <input type="date" th:field="*{birthdate}" class="form-control" required/>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Reason for Refferal: </label>
+                <label class="col-4 col-form-label">Henvisningsårsag: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{reasonForRefferal}" class="form-control" required/>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-4 col-form-label">Associated Healthcare Worker(s): </label>
+                <label class="col-4 col-form-label">Tilknyttede Medarbejder(e): </label>
                 <div class="col-8">
-                    <select class="form-select form-select-lg mb-3" th:field="*{users}" multiple>
+                    <select class="form-select form-select-lg mb-3 fs-6" th:field="*{users}" multiple>
                         <option th:each="user: ${users}" th:value="${user.userId}" th:text="${user.name}">
                         </option>
                     </select>
@@ -81,7 +89,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Gem</button>
             </div>
         </div>
     </form>
