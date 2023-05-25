@@ -126,7 +126,7 @@ public class SetupDataLoader implements
     Appointment appointment = new Appointment();
     appointment.setUser(userService.getUserById(1L));
     appointment.setTitle("Mobility med ***");
-    appointment.setStartTime(LocalDateTime.now());
+    appointment.setStartTime(LocalDateTime.now().minusDays(1).minusHours(3));
     appointment.setEndTime(LocalDateTime.now().plusHours(5));
     appointment.setDescription("Mobility beskrivelse");
     appointmentRepository.save(appointment);
@@ -134,7 +134,7 @@ public class SetupDataLoader implements
     appointment = new Appointment();
     appointment.setUser(userService.getUserById(1L));
     appointment.setTitle("Møde md ***");
-    appointment.setStartTime(LocalDateTime.now().plusDays(2));
+    appointment.setStartTime(LocalDateTime.now().plusDays(2).minusHours(4));
     appointment.setEndTime(LocalDateTime.now().plusDays(2).plusHours(2));
     appointment.setDescription("Møde beskrivelse");
     appointmentRepository.save(appointment);
@@ -142,8 +142,8 @@ public class SetupDataLoader implements
     appointment = new Appointment();
     appointment.setUser(userService.getUserById(1L));
     appointment.setTitle("ADL med ***");
-    appointment.setStartTime(LocalDateTime.now().plusDays(5));
-    appointment.setEndTime(LocalDateTime.now().plusDays(5).plusHours(2));
+    appointment.setStartTime(LocalDateTime.now().plusDays(5).plusHours(1));
+    appointment.setEndTime(LocalDateTime.now().plusDays(5).plusHours(3));
     appointment.setDescription("ADL beskrivelse");
     appointmentRepository.save(appointment);
 

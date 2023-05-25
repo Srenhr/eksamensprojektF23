@@ -32,16 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 // Set the desired options for FullCalendar
                 // ...
-
+                timeZone: 'UTC',
                 // Pass the formatted appointment data to FullCalendar
                 events: events,
                 // Specify the event time format for display
-                eventTimeFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false,
-                    hour24: true
-                },
+                                eventTimeFormat: {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: false,
+                                    hour24: true
+                                },
+
                 // Add event click handler
                 eventClick: function (info) {
 
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     modalTitle.textContent = 'Opdater Aftale'
                     document.getElementById('inpId').value = info.event.id
                     document.getElementById('inpTitle').value = info.event.title
-                    var startISO = info.event.start.toISOString() /*Solution to Y10K problem*/
+                    var startISO = info.event.start.toISOString()
                     var endISO = info.event.end.toISOString()
                     document.getElementById('inpStartDateTime').value = startISO.substring(0, startISO.indexOf("T") + 6)/*Solution to Y10K problem*/
                     document.getElementById('inpEndDateTime').value = endISO.substring(0, endISO.indexOf("T") + 6)
@@ -66,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     console.log('Event clicked:', info.event);
                     console.log("Start: " + startISO + " Slut: " + endISO)
+                    console.log("StartISO: " + startISO.substring(0, startISO.indexOf("T") + 6) + " SlutISO: " + endISO.substring(0, endISO.indexOf("T") + 6))
+
                 }
             });
 
