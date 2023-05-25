@@ -4,18 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     var addButton = document.getElementById('createButton');
     var deleteButton = document.getElementById('deleteButton');
     var modalTitle = document.getElementById('modalFormTitle')
-
+    let startTime = document.getElementById("inpStartDateTime")
+    let endTime = document.getElementById("inpEndDateTime")
 
     /*-- ADD APPOINTMENT BUTTON -- */
     addButton.addEventListener('click', function () {
         form.action = 'http://localhost:8080/api/appointment/create';
         deleteButton.hidden = true;
         modalTitle.textContent = 'Opret Aftale'
+        document.getElementById('inpId').value = null
+        document.getElementById('inpTitle').value = null
+        document.getElementById('inpStartDateTime').value = null
+        document.getElementById('inpEndDateTime').value = null
+        document.getElementById('inpDescription').value = null
     });
 
     /*-- DELETE APPOINTMENT BUTTON -- */
     deleteButton.addEventListener('click', function () {
         form.action = 'http://localhost:8080/api/appointment/delete';
+    });
+
+    /*-- ENDTIME MINIMUM -- */
+    startTime.addEventListener('change', function () {
+        endTime.min = startTime.value
     });
 
     /*-- FORM SUBMIT -- */

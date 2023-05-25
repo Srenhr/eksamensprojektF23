@@ -54,8 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     modalTitle.textContent = 'Opdater Aftale'
                     document.getElementById('inpId').value = info.event.id
                     document.getElementById('inpTitle').value = info.event.title
-                    /*document.getElementById('inpStartDateTime').value = info.event.start*/ /*formateres ikke korrekt*/
-                    /*document.getElementById('inpEndDateTime').value = info.event.end*/ /*formateres ikke korrekt*/
+                    var startISO = info.event.start.toISOString() /*Solution to Y10K problem*/
+                    var endISO = info.event.end.toISOString()
+                    document.getElementById('inpStartDateTime').value = startISO.substring(0, startISO.indexOf("T") + 6)/*Solution to Y10K problem*/
+                    document.getElementById('inpEndDateTime').value = endISO.substring(0, endISO.indexOf("T") + 6)
                     document.getElementById('inpDescription').value = info.event.extendedProps.description
 
                     // JavaScript code to toggle the modal
@@ -63,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     modalAdd.toggle();
 
                     console.log('Event clicked:', info.event);
+                    console.log("Start: " + startISO + " Slut: " + endISO)
                 }
             });
 

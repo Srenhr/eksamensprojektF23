@@ -36,10 +36,8 @@ public class AppointmentController {
     return new ResponseEntity<>("Appointment Created", HttpStatus.OK);
   }
 
-
   @PostMapping("/appointment/edit")
   public ResponseEntity<String> editAppointment(@RequestBody Appointment requestBody, Principal principal) {
-    System.out.println(requestBody);
     User loggedInUser = userService.getUserByUsername(principal.getName());
     requestBody.setUser(loggedInUser);
     appointmentService.updateAppointment(requestBody);
