@@ -1,11 +1,13 @@
 package com.miso.eksamensprojektf23.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ import java.util.Calendar;
 @Table(name = "appointments")
 public class Appointment {
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "appointment_id")
   private Long appointmentId;
 
@@ -25,39 +27,26 @@ public class Appointment {
   @JoinColumn(name = "user_id")
   private User user;
 
-  @ManyToOne
-  @JoinColumn(name = "patient_id")
-  private Patient patient;
-
-  @NotNull
+  @NotBlank
   private String title;
 
+  @Lob
+  @Column(length = 65535) /*Makes sure String is persisted as TEXT in database instead of varchar(255)*/
+  private String description;
+
   @NotNull(message = "Appointment start time is required")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Calendar startTime;
+  @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") /*ISO8601*/
+  private LocalDateTime startTime;
 
   @NotNull(message = "Appointment end time is required")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Calendar endTime;
+  @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") /*ISO8601*/
+  private LocalDateTime endTime;
 
   // Other attributes, constructors, getters, and setters
 
   // Helper method to get appointment duration in minutes
   public int getDurationInMinutes() {
-    long durationInMillis = endTime.getTimeInMillis() - startTime.getTimeInMillis();
-    return (int) (durationInMillis / (1000 * 60));
-  }
-
-  // Helper method to get the appointment start time as an ISO 8601 string
-  public String getStartTimeIso8601() {
-    SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    return iso8601Format.format(startTime.getTime());
-  }
-
-  // Helper method to get the appointment end time as an ISO 8601 string
-  public String getEndTimeIso8601() {
-    SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    return iso8601Format.format(endTime.getTime());
+    return endTime.getMinute() - startTime.getMinute();
   }
 
   // Other methods or business logic related to the appointment

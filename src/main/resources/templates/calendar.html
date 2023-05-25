@@ -5,65 +5,7 @@
     <div th:replace="~{fragments/header :: head-files}"></div>
     <!--Calendar JS-->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-    <!-- Getting appointments in calendar -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-
-            // Fetch the user's ID from the server
-
-            fetch('http://localhost:8080/user/appointments')
-                .then(response => response.json())
-                .then(data => {
-                    // Format the appointment data for FullCalendar
-                    var events = data.map(appointment => ({
-                        id: appointment.id,
-                        title: appointment.title,
-                        start: appointment.startTimeIso8601,
-                        end: appointment.endTimeIso8601,
-                        // Add any additional properties or formatting as needed
-                    }));
-
-                    function formatTime(time) {
-                        var date = new Date(time);
-                        var hour = date.getHours();
-                        var minute = date.getMinutes();
-                        return ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2);
-                    }
-
-                    // Initialize FullCalendar
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                        // Set the desired options for FullCalendar
-                        // ...
-
-                        // Pass the formatted appointment data to FullCalendar
-                        events: events,
-                        // Specify the event time format for display
-                        eventTimeFormat: {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false,
-                            hour24: true
-                        },
-                        // Add event click handler
-                        eventClick: function(info) {
-                            // Get the clicked appointment ID
-                            var appointmentId = info.event.id;
-
-                            // Handle event click logic here
-                            // For example, navigate to the selected appointment's details page
-                            window.location.href = '/appointments/' + appointmentId;
-
-                            console.log('Event clicked:', info.event);
-                        }
-                    });
-
-                    // Render the calendar
-                    calendar.render();
-                });
-        });
-
-    </script>
+    <script src="/js/calendar_rendering.js"></script>
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -80,12 +22,66 @@
         <h1 class="h2">Kalender</h1>
     </div>
 
+    <!-- Button trigger modal -->
+    <button id="createButton" type="button" class="btn btn-lg btn-primary btn-block" data-bs-toggle="modal"
+            data-bs-target="#modalForm">
+        Opret aftale
+    </button>
+
     <!--Calendar-->
     <div id='calendar' class="shadow-lg p-3 mb-5 rounded"></div>
+
+    <!-- Scrollable modal -->
+    <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalFormTitle"
+         style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalFormTitle"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="appointmentForm">
+                    <div class="modal-body">
+                        <div class="m-3">
+                            <input type="hidden" id="inpId"/>
+                            <div class="form-group row">
+                                <label class="col-form-label fw-bold" for="inpTitle">Titel:</label>
+                                <input class="form-control" type="text" name="title" id="inpTitle" required>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label fw-bold" for="inpStartDateTime">Starttid:</label>
+                                <input class="form-control" type="datetime-local" name="startDateTime"
+                                       id="inpStartDateTime" required>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label fw-bold" for="inpEndDateTime">Sluttid:</label>
+                                <input class="form-control" type="datetime-local" name="StartDateTime"
+                                       id="inpEndDateTime" required>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label fw-bold" for="inpDescription">Beskrivelse
+                                    (Valgfri): </label>
+                                <textarea class="form-control" rows="3"
+                                          id="inpDescription"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="submit" class="btn btn-primary">Gem</button>
+                        <button id="deleteButton" type="submit" class="btn btn-primary">Slet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
+
+<!--Appointment form scripts-->
+<script src="/js/appointment_form.js"></script>
 
 </body>
 </html>

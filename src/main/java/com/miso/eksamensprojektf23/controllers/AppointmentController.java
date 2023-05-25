@@ -3,59 +3,53 @@ package com.miso.eksamensprojektf23.controllers;
 
 import com.miso.eksamensprojektf23.models.Appointment;
 import com.miso.eksamensprojektf23.models.User;
-import com.miso.eksamensprojektf23.repositories.AppointmentRepository;
-import com.miso.eksamensprojektf23.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.miso.eksamensprojektf23.services.AppointmentService;
+import com.miso.eksamensprojektf23.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
+@RequiredArgsConstructor
+@RequestMapping("/api")
 public class AppointmentController {
 
+  private final AppointmentService appointmentService;
+  private final UserService userService;
 
-    @Autowired
-    AppointmentRepository appointmentRepository;
+  @GetMapping("/appointments")
+  public List<Appointment> returnAppointments(Principal principal) {
+    return appointmentService.getAppointmentsByUsername(principal.getName());
+  }
 
-    @Autowired
-    UserRepository userRepository;
+  @PostMapping("/appointment/create")
+  public ResponseEntity<String> createAppointment(@RequestBody Appointment requestBody, Principal principal) {
+    // Use the logged-in user's ID to fetch data specific to that user
+    User loggedInUser = userService.getUserByUsername(principal.getName());
+    requestBody.setUser(loggedInUser);
+    appointmentService.saveAppointment(requestBody);
+    return new ResponseEntity<>("Appointment Created", HttpStatus.OK);
+  }
 
 
-    @GetMapping("/appointments")
-    public List<Appointment> returnAppointments() {
-        return appointmentRepository.findAll();
-    }
+  @PostMapping("/appointment/edit")
+  public ResponseEntity<String> editAppointment(@RequestBody Appointment requestBody, Principal principal) {
+    System.out.println(requestBody);
+    User loggedInUser = userService.getUserByUsername(principal.getName());
+    requestBody.setUser(loggedInUser);
+    appointmentService.updateAppointment(requestBody);
+    return new ResponseEntity<>("Appointment Updated", HttpStatus.OK);
+  }
 
-    @GetMapping("/user/appointments")
-    public List<Appointment> employeeAppointments(Model model, Principal principal) {
-        String loggedInUsername = principal.getName();
-        // Use the logged-in user's ID to fetch data specific to that user
-
-        Optional<User> loggedInUser = userRepository.findUserByUsername(loggedInUsername);
-        // Currently throws on error for user if user doesn't have appointments
-        return appointmentRepository.findAppointmentsByUser(loggedInUser.get());
-    }
-
-    @PostMapping("/createAppointment")
-    public ResponseEntity<String> createAppointment(@RequestBody Appointment appointment, Principal principal) {
-        String loggedInUsername = principal.getName();
-        // Use the logged-in user's ID to fetch data specific to that user
-
-        Optional<User> loggedInUser = userRepository.findUserByUsername(loggedInUsername);
-
-        appointment.setUser(loggedInUser.get());
-
-        appointmentRepository.save(appointment);
-
-        return new ResponseEntity<>("Appointment Created", HttpStatus.OK);
-    }
-
+  @PostMapping("/appointment/delete")
+  public ResponseEntity<String> deleteAppointment(@RequestBody Appointment requestBody) {
+    appointmentService.deleteAppointment(requestBody);
+    return new ResponseEntity<>("Appointment Deleted", HttpStatus.OK);
+  }
 
 }
