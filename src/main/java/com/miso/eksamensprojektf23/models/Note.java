@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,16 +27,12 @@ public class Note {
 
   @NotBlank
   @Lob
-  @Column( length = 65535) /*Makes sure String is persisted as TEXT in database instead of varchar(255)*/
+  @Column(length = 65535) /*Makes sure String is persisted as TEXT in database instead of varchar(255)*/
   private String textBody;
 
   // Get the current LocalDateTime
-  @Transient
-  LocalDateTime currentDateTime = LocalDateTime.now();
-
-  // Create a Timestamp object from the current LocalDateTime
   @NotNull
-  Timestamp timestamp = Timestamp.valueOf(currentDateTime);
+  LocalDateTime timestamp = LocalDateTime.now();
 
   @ManyToOne
   @JoinColumn(name = "user_id")

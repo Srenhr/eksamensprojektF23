@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment</title>
+
+
+</head>
+<body>
+
+<form id="appointmentForm" method="post" action="http://localhost:8080/api/createAppointment">
+    <label for="ddPatients">Patienter</label>
+    <select name="patient" id="ddPatients"></select>
+    <br>
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title">
+    <br>
+    <label for="startDate">Start-tid</label>
+    <input type="datetime-local" name="startTime" id="startDate">
+    <br>
+    <label for="endDate">Slut-tid</label>
+    <input type="datetime-local" name="endTime" id="endDate">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectDDPatients = document.getElementById("ddPatients");
+        const getPatientsUrl = "http://localhost:8080/api/patients";
+
+        function fetchAny(url) {
+            return fetch(url).then((response) => response.json())
+        }
+
+        let lstPatients = [];
+
+        async function fetchPatients() {
+            lstPatients = await fetchAny(getPatientsUrl);
+            console.log(lstPatients)
+            lstPatients.forEach(fillPatientsDropDown);
+        }
+
+        function fillPatientsDropDown(patient) {
+            const el = document.createElement("option");
+            el.textContent = patient.name;
+            el.value = patient;
+            selectDDPatients.appendChild(el);
+        }
+
+        fetchPatients();
+        document.addEventListener('DOMContentLoaded', createAppointmentFormEventListener);
+
+
+        let formShowtime;
+
+        function createAppointmentFormEventListener() {
+            formShowtime = document.getElementById("appointmentForm");
+            formShowtime.addEventListener("submit", handleAppointmentFormSubmit);
+        }
+
+
+        async function handleAppointmentFormSubmit(event) {
+            //Vi handler submit her, i stedet for default html behaviour
+            event.preventDefault();
+            const form = event.currentTarget;
+            const url = form.action;
+            console.log(form)
+            console.log(url)
+            // console.log(form === formUser)
+            try {
+                const formData = new FormData(form);
+                console.log(formData);
+                const responseData = await postFormData(url, formData)
+
+                // Når vi har oprettet appointment
+                // alert(formData.get('showtime') + ' er oprettet');
+
+                const homeUrl = "index";
+                window.location.replace(homeUrl); // Man kan ikke gøre det her indeni en submit button
+                //window.location.href = homeUrl;
+
+            } catch (error) {
+                alert(error.message)
+                console.log(error)
+            }
+        }
+
+        async function postFormData(url, formData) {
+            const plainFormData = Object.fromEntries(formData.entries())
+            const ddIndex = selectDDPatients.selectedIndex;
+            console.log(ddIndex);
+            const selectedPatient = selectDDPatients[ddIndex];
+            console.log(selectedPatient);
+            plainFormData.patient = selectedPatient.value; //THIS MIGHT MAKE IT WORK?
+            console.log(plainFormData);
+            const formDataJsonString = JSON.stringify(plainFormData);
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: formDataJsonString
+            }
+
+            const response = await fetch(url, fetchOptions)
+
+            if (!response.ok) {
+                const errorMessage = await response.text()
+                throw new Error(errorMessage)
+            }
+            return response.json();
+        }
+
+        document.addEventListener('submit', handleAppointmentFormSubmit);
+    });
+</script>
+
+</body>
+</html>

@@ -78,6 +78,10 @@ body {
     transform: translateX(-50%);
 }
 
+.modal-body {
+    background-color: #FAF9F6;
+}
+
 .navbar {
     background-color: #6fa5bd;
 }

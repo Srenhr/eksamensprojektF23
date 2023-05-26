@@ -50,8 +50,13 @@ public class DefaultController {
     return "errors/403";
   }
 
-  @GetMapping("/test")
-  public String test() {
-    return "tempEmployeeFormTest";
+  @GetMapping("/test1")
+  public String test1() {
+    return "tests/appointment_register_form";
+  }
+
+  @GetMapping("/test2")
+  public String test2() {
+    return "tests/calendarImplementationTest";
   }
 }

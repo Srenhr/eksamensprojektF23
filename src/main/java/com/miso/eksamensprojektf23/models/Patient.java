@@ -24,25 +24,31 @@ public class Patient {
   @Column(name = "patient_id")
   private Long patientId;
   @NotBlank
+  @JsonIgnore
   private String firstName;
   @NotBlank
+  @JsonIgnore
   private String lastName;
   @Transient
   private String name;
   @Column(unique = true)
   @NotBlank
+  @JsonIgnore
   private String email;
   @Column(unique = true)
   @NotBlank
+  @JsonIgnore
   private String phoneNumber;
   @Column(unique = true)
   @NotBlank
   @JsonIgnore
   private String sSNumber;
-  @NotNull
   @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @NotNull
+  @JsonIgnore
   private LocalDate birthdate;
   @NotBlank
+  @JsonIgnore
   private String reasonForRefferal;
 
   @ManyToMany(fetch = FetchType.EAGER)
@@ -53,12 +59,8 @@ public class Patient {
       inverseJoinColumns = @JoinColumn(
           name = "user_id", referencedColumnName = "user_id"))
   @ToString.Exclude
-  private Set<User> users;
-
-  @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore
-  @ToString.Exclude
-  private Set<Appointment> appointments;
+  private Set<User> users;
 
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
   @JsonIgnore

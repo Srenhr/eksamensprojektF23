@@ -31,17 +31,22 @@ public class User implements UserDetails {
   @NotBlank
   private String username; /*email*/
   @NotBlank
+  @JsonIgnore
   private String password;
   @NotBlank
+  @JsonIgnore
   private String firstName;
   @NotBlank
+  @JsonIgnore
   private String lastName;
   @Transient
   private String name;
   @Column(unique = true)
   @NotBlank
+  @JsonIgnore
   private String phoneNumber;
   @NotNull
+  @JsonIgnore
   private boolean enabled;
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
