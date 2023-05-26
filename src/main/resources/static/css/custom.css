@@ -21,6 +21,11 @@ body {
     border-color: #F56E28;
 }
 
+.btn-bd-primary:active:focus {
+    background-color: #0c8698;
+    border-color: #F56E28;
+}
+
 .btn-primary {
     background-color: #0c8296;
     border-color: #0c8296;
@@ -29,6 +34,11 @@ body {
 
 .btn-primary:hover {
     background-color: #0c8296;
+    border-color: #F56E28;
+}
+
+.btn-primary:active:focus {
+    background-color: #0c8698;
     border-color: #F56E28;
 }
 
