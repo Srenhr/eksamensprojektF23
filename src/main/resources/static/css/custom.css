@@ -81,13 +81,6 @@ body {
     width: 15%;
 }
 
-#logo {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 .modal-body {
     background-color: #FAF9F6;
 }

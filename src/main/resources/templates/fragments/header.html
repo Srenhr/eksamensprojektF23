@@ -27,37 +27,39 @@
     <!-- Header -->
     <header>
         <!--Navbar-->
-        <nav class="navbar py-4" aria-label="fragmentNavbar">
+        <nav class="navbar py-3" aria-label="fragmentNavbar">
             <div class="container-fluid justify-content-between align-items-center" style="width: 90%">
-                <div class="nav-item" id="menu">
-                    <a sec:authorize="isAuthenticated()"
-                       class="nav-link custom-nav-text fw-bold"
-                       data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button"
-                       aria-controls="offcanvasScrolling">
-                        MENU <span class="navbar-toggler-icon"></span>
-                    </a> <!--Id is being used in sidebar.html-->
+                <div id="logo" class="nav-brand">
+                    <a th:href="@{/home}">
+                        <img width="200" height="76"
+                             src="/img/cropped-Blindeinstitut-logo-PNG-format.png"
+                             class="custom-logo" alt="Blindeinstitut logo - link til forside">
+                    </a>
                 </div>
-                <div class="nav-item" id="login">
-                    <div sec:authorize="isAnonymous()">
-                        <form th:action="@{/dashboard}" method="get">
-                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG IND"/>
-                        </form>
+                <div class="d-flex">
+                    <div class="nav-item me-3" id="menu">
+                        <a sec:authorize="isAuthenticated()"
+                           class="nav-link custom-nav-text fw-bold"
+                           data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button"
+                           aria-controls="offcanvasScrolling">
+                            MENU <span class="navbar-toggler-icon"></span>
+                        </a>
                     </div>
-                    <div sec:authorize="isAuthenticated()">
-                        <form th:action="@{/logout}" method="post">
-                            <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG UD"/>
-                        </form>
+                    <div class="nav-item" id="login">
+                        <div sec:authorize="isAnonymous()">
+                            <form th:action="@{/dashboard}" method="get">
+                                <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG IND"/>
+                            </form>
+                        </div>
+                        <div sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}" method="post">
+                                <input class="nav-link custom-nav-text fw-bold" type="submit" value="LOG UD"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
-        <div id="logo">
-            <a th:href="@{/home}">
-                <img width="200" height="76"
-                    src="/img/cropped-Blindeinstitut-logo-PNG-format.png"
-                     class="custom-logo" alt="Blindeinstitut logo - link til forside">
-            </a>
-        </div>
     </header>
 
 
